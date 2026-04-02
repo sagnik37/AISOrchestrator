@@ -1,0 +1,308 @@
+# azure-pipelines.linux.yml
+# Azure Functions Flex Consumption deployment
+# .NET 8 isolated, Linux, single deterministic ZIP
+
+trigger: none
+
+variables:
+  azureServiceConnection: 'SC-DEV-SUBSCRIPTION'
+  functionAppName: 'func-FsaFscm-WOTransaction-AIS-test-EastUs'
+  resourceGroupName: 'rg-d365-fs-fscm-intg-wo-projects-eastus'
+
+  functionsProject: 'src/Rpc.AIS.Accrual.Orchestrator.Functions/Rpc.AIS.Accrual.Orchestrator.Functions.csproj'
+  buildConfiguration: 'Release'
+  artifactName: 'released-package'
+
+  keyVaultUri: 'https://kv-d365ais-dev-eastus2.vault.azure.net/'
+
+  # Key Vault secret names
+  kvSecret_AppInsightsConn: 'appinsights-connection-string'
+  kvSecret_DataverseClientId: 'poc-dataverse-clientid'
+  kvSecret_DataverseClientSecret: 'poc-dataverse-clientsecret'
+  kvSecret_FscmClientSecret: 'fscm-auth-clientsecret'
+  kvSecret_AcsEmailConn: 'acs-email-connection-string'
+
+
+
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build and Publish Single ZIP
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK 8'
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+        command: 'restore'
+        projects: '$(functionsProject)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build'
+      inputs:
+        command: 'build'
+        projects: '$(functionsProject)'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+    - task: Bash@3
+      displayName: 'Clean publish folder'
+      inputs:
+        targetType: 'inline'
+        script: |
+          set -euo pipefail
+          rm -rf "$(Build.ArtifactStagingDirectory)/publish"
+          mkdir -p "$(Build.ArtifactStagingDirectory)/publish"
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish'
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: '$(functionsProject)'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish --no-build /p:UseAppHost=false'
+        zipAfterPublish: false
+
+    - task: Bash@3
+      displayName: 'Detect and validate publish root'
+      inputs:
+        targetType: 'inline'
+        script: |
+          set -euo pipefail
+
+          BASE="$(Build.ArtifactStagingDirectory)/publish"
+
+          echo "Listing publish base folder:"
+          ls -la "$BASE"
+
+          if [ -f "$BASE/host.json" ]; then
+            PUBLISH_ROOT="$BASE"
+          else
+            CANDIDATE="$(find "$BASE" -mindepth 2 -maxdepth 2 -type f -name host.json | head -n 1 | xargs -r dirname)"
+            if [ -z "${CANDIDATE:-}" ]; then
+              echo "ERROR: Could not find host.json anywhere under $BASE"
+              echo "Dumping files under publish folder:"
+              find "$BASE" -maxdepth 4 -type f | sort
+              exit 1
+            fi
+            PUBLISH_ROOT="$CANDIDATE"
+          fi
+
+          echo "Detected publish root: $PUBLISH_ROOT"
+          ls -la "$PUBLISH_ROOT"
+
+          test -f "$PUBLISH_ROOT/host.json" || { echo "ERROR: host.json missing in detected publish root"; exit 1; }
+          test -f "$PUBLISH_ROOT/worker.config.json" || { echo "ERROR: worker.config.json missing in detected publish root"; exit 1; }
+          test -f "$PUBLISH_ROOT/Rpc.AIS.Accrual.Orchestrator.Functions.dll" || { echo "ERROR: Functions DLL missing in detected publish root"; exit 1; }
+
+          echo "host.json content:"
+          cat "$PUBLISH_ROOT/host.json"
+
+          echo "##vso[task.setvariable variable=DetectedPublishRoot]$PUBLISH_ROOT"
+
+    - task: Bash@3
+      displayName: 'Create deployment ZIP'
+      inputs:
+        targetType: 'inline'
+        script: |
+          set -euo pipefail
+
+          cd "$(DetectedPublishRoot)"
+          zip -r "$(Build.ArtifactStagingDirectory)/$(artifactName).zip" .
+
+          echo "Created ZIP:"
+          ls -lh "$(Build.ArtifactStagingDirectory)/$(artifactName).zip"
+          sha256sum "$(Build.ArtifactStagingDirectory)/$(artifactName).zip"
+
+    - task: Bash@3
+      displayName: 'Validate ZIP contents'
+      inputs:
+        targetType: 'inline'
+        script: |
+          set -euo pipefail
+
+          ZIP_FILE="$(Build.ArtifactStagingDirectory)/$(artifactName).zip"
+          ENTRY_FILE="$(Build.ArtifactStagingDirectory)/zip-entries.txt"
+
+          zipinfo -1 "$ZIP_FILE" > "$ENTRY_FILE"
+
+          echo "ZIP root entries:"
+          sed -n '1,150p' "$ENTRY_FILE"
+
+          grep -Fxq 'host.json' "$ENTRY_FILE" || { echo "ERROR: host.json is not at ZIP root."; exit 1; }
+          grep -Fxq 'worker.config.json' "$ENTRY_FILE" || { echo "ERROR: worker.config.json is not at ZIP root."; exit 1; }
+          grep -Fxq 'Rpc.AIS.Accrual.Orchestrator.Functions.dll' "$ENTRY_FILE" || { echo "ERROR: Functions DLL is not at ZIP root."; exit 1; }
+          grep -Fxq 'functions.metadata' "$ENTRY_FILE" || { echo "ERROR: functions.metadata is not at ZIP root."; exit 1; }
+
+          echo "ZIP structure looks valid."
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Pipeline Artifact'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/$(artifactName).zip'
+        artifact: '$(artifactName)'
+
+- stage: Deploy
+  displayName: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: DeployFunction
+    displayName: 'Deploy Azure Function App (Flex)'
+    environment: 'dev'
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: '$(artifactName)'
+
+          - task: Bash@3
+            displayName: 'Verify downloaded artifact'
+            inputs:
+              targetType: 'inline'
+              script: |
+                set -euo pipefail
+                echo "Downloaded artifact contents:"
+                find "$(Pipeline.Workspace)/$(artifactName)" -maxdepth 3 -type f | sort
+                test -f "$(Pipeline.Workspace)/$(artifactName)/$(artifactName).zip"
+
+          - task: AzureFunctionApp@2
+            displayName: 'Deploy Function App (Flex Consumption)'
+            inputs:
+              connectedServiceNameARM: '$(azureServiceConnection)'
+              appType: 'functionAppLinux'
+              isFlexConsumption: true
+              appName: '$(functionAppName)'
+              package: '$(Pipeline.Workspace)/$(artifactName)/$(artifactName).zip'
+
+          - task: AzureCLI@2
+            displayName: 'Configure App Settings'
+            inputs:
+              azureSubscription: '$(azureServiceConnection)'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                set -euo pipefail
+                rg="$(resourceGroupName)"
+                app="$(functionAppName)"
+                kv="$(keyVaultUri)"
+                kv="${kv%/}"
+
+                aiRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_AppInsightsConn))"
+                dvClientIdRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_DataverseClientId))"
+                dvClientSecretRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_DataverseClientSecret))"
+                fsRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_FscmClientSecret))"
+                acsRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_AcsEmailConn))"
+
+                settings=(
+                  "AZURE_FUNCTIONS_ENVIRONMENT=Development"
+                  "APPLICATIONINSIGHTS_CONNECTION_STRING=$aiRef"
+                  "AccrualSchedule=0 5 6 * * *"
+                  "KeyVault__VaultUri=${kv}/"
+
+                  "Dataverse__Auth__TenantId=bda43523-4404-4833-b00d-90e88aa1f2b3"
+                  "Dataverse__Auth__ClientId=$dvClientIdRef"
+                  "Dataverse__Auth__ClientSecret=$dvClientSecretRef"
+
+                  "FsaIngestion__DataverseApiBaseUrl=https://ue-sbx-techtestpoc.crm.dynamics.com/api/data/v9.2/"
+                  "FsaIngestion__PageSize=500"
+                  "FsaIngestion__MaxPages=20"
+                  "FsaIngestion__PreferMaxPageSize=5000"
+                  "FsaIngestion__OrFilterChunkSize=25"
+                  "FsaIngestion__FetchStrategy=FullFetch"
+                  "FsaIngestion__WorkOrderFilter=((msdyn_systemstatus eq 690970000 or msdyn_systemstatus eq 690970001 or msdyn_systemstatus eq 690970002))"
+                  "Fs__SyncInternalDocumentsToFscm= false"
+
+                  "Fscm__BaseUrl=https://ue-sbx-techtestpoc.operations.dynamics.com/"
+                  "Fscm__Auth__TenantId=bda43523-4404-4833-b00d-90e88aa1f2b3"
+                  "Fscm__Auth__ClientId=c7ed9a22-a232-4b5f-b11a-cb4acc5939f5"
+                  "Fscm__Auth__ClientSecret=$fsRef"
+                  "Fscm__Auth__DefaultScope=https://ue-sbx-techtestpoc.operations.dynamics.com/.default"
+
+                  "Fscm__JournalHistoryOrFilterChunkSize=25"
+                  "Fscm__ReleasedDistinctProductsOrFilterChunkSize=25"
+
+                  "Fscm__SubProjectPath=/api/services/RPCSubProjectCreationWOIntServGrp/RPCSubProjectCreationWOIntServ/createSubProject"
+                  "Fscm__JournalValidatePath=/api/services/RPCJournalValidationWOIntServGrp/RPCJournalValidationWOIntServ/validate"
+                  "Fscm__JournalCreatePath=/api/services/RPCJournalOperationWOIntServGrp/RPCJournalOperationWOIntServ/runJournalAsyncOperation"
+                  "Fscm__JournalPostPath=/api/services/RPCJournalPostingWOIntServGrp/RPCJournalPostingWOIntServ/postJournal"
+                  "Fscm__UpdateInvoiceAttributesPath=/api/services/RPCInvoiceAttributesWOIntServGrp/RPCInvoiceAttributesWOIntServ/runAttributesAsyncOperation"
+                  "Fscm__UpdateProjectStatusPath=/api/services/RPCSubProjectStatusWOIntServGrp/RPCSubProjectStatusWOIntServ/updateStatus"
+                  "Fscm__DocuAttachmentsPath=/data/RPCCustomDocuAttachments"
+                  "Fscm__Periods__FiscalCalendarIdOverride=Fis Cal"
+
+                  "Notifications__ErrorDistributionList=schakbra35946@RPC.NET"
+                  "Notifications__InvalidPayloadDistributionList=schakbra35946@RPC.NET"
+
+                  "AcsEmail__Enabled=true"
+                  "AcsEmail__ConnectionString=$acsRef"
+                  "AcsEmail__FromAddress=DoNotReply@7a764680-845f-4a41-81ff-c2a6ba519128.azurecomm.net"
+                  "AcsEmail__FromDisplayName=AIS Local"
+                  "AcsEmail__WaitUntilCompleted=false"
+
+                  "Fscm__ReleasedDistinctProductsCache__Enabled=true"
+                  "Fscm__ReleasedDistinctProductsCache__Ttl=1.00:00:00"
+                  "Fscm__ReleasedDistinctProductsCache__NegativeTtl=01:00:00"
+                  "Fscm__ReleasedDistinctProductsCache__MaxItemCountPerCall=200000"
+
+                  "AisLogging__LogPayloadBodies=true"
+                  "AisLogging__LogMultiWoPayloadBody=true"
+                  "AisLogging__IncludeDeltaReasonKey=true"
+
+                  "HttpPolicies__Dataverse__TimeoutSeconds=60"
+                  "HttpPolicies__Dataverse__Retries=6"
+                  "HttpPolicies__Dataverse__MaxBackoffSeconds=30"
+                  "HttpResilience__UseJitter=true"
+                  "HttpPolicies__Fscm__TimeoutSeconds=120"
+                  "HttpPolicies__Fscm__Retries=5"
+                  "HttpPolicies__Fscm__MaxBackoffSeconds=30"
+
+                  "Warmup__Enabled=true"
+                  "Warmup__MaxMinutes=10"
+                  "Warmup__DefaultMinutes=1"
+                  "Warmup__DefaultMaxConcurrency=2"
+                  "Warmup__DefaultDelayMs=800"
+
+                  "Warmup__DataversePaths__0=msdyn_workorders?\$select=msdyn_workorderid&\$top=1"
+                  "Warmup__DataversePaths__1=msdyn_workorderproducts?\$select=msdyn_workorderproductid&\$top=1"
+                  "Warmup__DataversePaths__2=msdyn_workorderservices?\$select=msdyn_workorderserviceid&\$top=1"
+                  "Warmup__DataversePaths__3=products?\$select=productid&\$top=1"
+
+                  "Warmup__FscmPaths__0=data/ProjectItemJournalTrans?\$select=ProjectId&\$top=1"
+                  "Warmup__FscmPaths__1=data/JournalTrans?\$select=JournalNum&\$top=1"
+                  "Warmup__FscmPaths__2=data/ExpenseJournalLines?\$select=ProjectUnitID&\$top=1"
+                  "Warmup__FscmPaths__3=data/FiscalPeriods?\$select=FiscalYear&\$top=1"
+                  "Warmup__FscmPaths__4=data/LedgerFiscalPeriodsV2?\$select=LedgerName&\$top=1"
+                  "Warmup__FscmPaths__5=data/FiscalCalendarsEntity?\$select=CalendarId&\$top=1"
+                  "Warmup__FscmPaths__6=data/AttributeTypeGlobalAttributes?\$select=Name&\$top=1"
+                  "Warmup__FscmPaths__7=data/RPCLegalEntityIntegrationParametersBaseIntParams?\$select=dataAreaId&\$top=1"
+                  "Warmup__FscmPaths__8=data/CDSReleasedDistinctProducts?\$select=ItemNumber&\$top=1"
+                )
+
+                az functionapp config appsettings set \
+                  --resource-group "$rg" \
+                  --name "$app" \
+                  --settings "${settings[@]}"
+
+                echo "App settings applied successfully."
+
+          - task: AzureCLI@2
+            displayName: 'Restart Function App'
+            inputs:
+              azureSubscription: '$(azureServiceConnection)'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                set -euo pipefail
+                az functionapp restart -g "$(resourceGroupName)" -n "$(functionAppName)"
+                echo "Function App restarted."

@@ -1,0 +1,33 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "name": "Parameters",
+      "content": {
+        "json": "{\n  \"version\": \"KqlParameterItem/1.0\",\n  \"parameters\": [\n    {\"name\": \"WorkOrderNumber\", \"type\": 1, \"value\": \"\"},\n    {\"name\": \"LookbackHours\", \"type\": 2, \"value\": 24}\n  ]\n}"
+      }
+    },
+    {
+      "type": 3,
+      "name": "Traces by Work Order",
+      "content": {
+        "json": "{\n  \"version\": \"KqlItem/1.0\",\n  \"query\": \"let wo = tostring('{WorkOrderNumber}');\\nlet lookback = totimespan({LookbackHours}h);\\ntraces\\n| where timestamp > ago(lookback)\\n| where message has wo or tostring(customDimensions.WorkOrderNumber) == wo\\n| project timestamp, severityLevel, message, customDimensions\\n| order by timestamp asc\",\n  \"size\": 1,\n  \"queryType\": 0,\n  \"resourceType\": \"microsoft.insights/components\"\n}"
+      }
+    },
+    {
+      "type": 3,
+      "name": "Exceptions by Work Order",
+      "content": {
+        "json": "{\n  \"version\": \"KqlItem/1.0\",\n  \"query\": \"let wo = tostring('{WorkOrderNumber}');\\nlet lookback = totimespan({LookbackHours}h);\\nexceptions\\n| where timestamp > ago(lookback)\\n| where outerMessage has wo or tostring(customDimensions.WorkOrderNumber) == wo\\n| project timestamp, type, outerMessage, customDimensions, details\\n| order by timestamp asc\",\n  \"size\": 1,\n  \"queryType\": 0,\n  \"resourceType\": \"microsoft.insights/components\"\n}"
+      }
+    },
+    {
+      "type": 3,
+      "name": "Outbound Delta Payload Chunks",
+      "content": {
+        "json": "{\n  \"version\": \"KqlItem/1.0\",\n  \"query\": \"let wo = tostring('{WorkOrderNumber}');\\nlet lookback = totimespan({LookbackHours}h);\\ntraces\\n| where timestamp > ago(lookback)\\n| where message has 'Delta.Payload.Outbound JSON_CHUNK'\\n| where message has wo or tostring(customDimensions.WorkOrderNumber) == wo\\n| project timestamp, message, customDimensions\\n| order by timestamp asc\",\n  \"size\": 1,\n  \"queryType\": 0,\n  \"resourceType\": \"microsoft.insights/components\"\n}"
+      }
+    }
+  ]
+}

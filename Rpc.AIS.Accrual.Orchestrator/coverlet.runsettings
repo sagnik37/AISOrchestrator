@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<DataCollectionRunSettings>
+		<DataCollectors>
+			<DataCollector friendlyName="XPlat Code Coverage">
+				<Configuration>
+
+					<!-- File exclusions: generated + build outputs -->
+					<ExcludeByFile>
+						**/obj/**
+						**/bin/**
+						**/*GeneratedFunctionExecutor.g.cs
+						**/*GeneratedFunctionMetadataProvider.g.cs
+						**/*WorkerExtensionStartupCodeExecutor.g.cs
+
+						<!-- Composition root / host wiring (Functions project only) -->
+						**/Rpc.AIS.Accrual.Orchestrator.Functions/Program.cs
+					</ExcludeByFile>
+
+					<!-- Type exclusions: Functions Worker glue code -->
+					<Exclude>
+						<!-- Azure Functions Worker SDK glue in your assembly -->
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.*AutoStartup*
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.*FunctionExecutor*
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.*MetadataProvider*
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.WorkerExtensionStartupCodeExecutor
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.GeneratedFunctionMetadataProvider
+						[Rpc.AIS.Accrual.Orchestrator.Functions]Rpc.AIS.Accrual.Orchestrator.Functions.DirectFunctionExecutor
+					</Exclude>
+
+				</Configuration>
+			</DataCollector>
+		</DataCollectors>
+	</DataCollectionRunSettings>
+</RunSettings>

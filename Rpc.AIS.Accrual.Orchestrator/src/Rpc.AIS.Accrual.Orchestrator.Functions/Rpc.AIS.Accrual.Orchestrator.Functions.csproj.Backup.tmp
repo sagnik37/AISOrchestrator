@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+
+    <!-- HARD ISOLATED MODE -->
+    <FunctionsWorkerDisableInProcExtensions>true</FunctionsWorkerDisableInProcExtensions>
+    <DisableImplicitAzureFunctionsExtensions>true</DisableImplicitAzureFunctionsExtensions>
+  </PropertyGroup>
+
+	<!-- CI hygiene: analyzers ON in TF_BUILD; keep style/naming non-breaking via .editorconfig -->
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+		<RunAnalyzers>true</RunAnalyzers>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+
+		<!-- Keep NuGet analyzers ON unless  have a specific noisy package -->
+		<DisableImplicitNuGetAnalyzers>false</DisableImplicitNuGetAnalyzers>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\Rpc.AIS.Accrual.Orchestrator.Domain\Rpc.AIS.Accrual.Orchestrator.Domain.csproj" />
+    <ProjectReference Include="..\Rpc.AIS.Accrual.Orchestrator.Application\Rpc.AIS.Accrual.Orchestrator.Application.csproj" />
+    <ProjectReference Include="..\Rpc.AIS.Accrual.Orchestrator.Infrastructure\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Isolated worker runtime -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.51.0" />
+
+    <!-- Keep Worker.Sdk on 2.x (do NOT downgrade). This is the supported toolchain for net8 isolated. -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" OutputItemType="Analyzer" />
+
+    <!-- Triggers/bindings -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Timer" Version="4.3.1" />
+
+    <!-- FIX: DurableTask MUST be net6-compatible because WorkerExtensions.csproj targets net6 -->
+    <!-- 1.13.0+ pulls net8-only Durable bits and breaks restore in WorkerExtensions -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" Version="1.14.1" />
+
+    <!-- App Insights -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="2.50.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
+
+    <!-- Key Vault config -->
+    <PackageReference Include="Azure.Identity" Version="1.17.1" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.4.0" />
+
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.3" />
+
+  </ItemGroup>
+
+  <!-- HARD BLOCK ANY WEBJOBS (IN-PROC) DURABLE FROM FLOWING INTO  BUILD/PUBLISH -->
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Azure.WebJobs.Extensions.DurableTask" ExcludeAssets="all" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Ensure host.json ships at publish root, local.settings.json never ships -->
+  <ItemGroup>
+    <Content Include="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+
+    <None Include="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

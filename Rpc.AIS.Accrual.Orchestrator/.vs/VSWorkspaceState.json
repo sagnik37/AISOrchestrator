@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services",
+    "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers",
+    "\\workbooks"
+  ],
+  "SelectedNode": "\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaDeltaPayloadJsonHelpers.cs",
+  "PreviewInSolutionExplorer": false
+}

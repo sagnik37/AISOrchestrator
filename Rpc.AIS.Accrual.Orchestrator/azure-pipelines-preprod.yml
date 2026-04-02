@@ -1,0 +1,172 @@
+# azure-pipelines.linux.yml
+# Linux Azure Function App deployment (ZIP deploy) + App Settings + Key Vault references
+#
+# IMPORTANT (Functions on Linux / env vars):
+# - Prefer "__" (double underscore) for nested configuration keys.
+#   Example: KeyVault__VaultUri maps to KeyVault:VaultUri in .NET configuration.
+# - This pipeline sets ALL nested keys using "__" to avoid any runtime ambiguity.
+
+trigger: none
+
+variables:
+  azureServiceConnection: 'SC-DEV-SUBSCRIPTION'
+  functionAppName: 'func-FsaFscm-WOTransaction-AIS-dev-EastUs'
+  resourceGroupName: 'rg-d365-fs-fscm-intg-wo-projects-eastus'
+
+  functionsProject: 'src/Rpc.AIS.Accrual.Orchestrator.Functions/Rpc.AIS.Accrual.Orchestrator.Functions.csproj'
+  buildConfiguration: 'Release'
+  artifactName: 'functionapp'
+
+  keyVaultUri: 'https://kv-d365ais-dev-eastus2.vault.azure.net/'
+
+  # Key Vault secret names (create these in KV)
+  kvSecret_AppInsightsConn: 'appinsights-connection-string'
+  kvSecret_DataverseClientSecret: 'dataverse-auth-clientsecret'
+  kvSecret_FscmClientSecret: 'fscm-auth-clientsecret'
+  kvSecret_AcsEmailConn: 'acs-email-connection-string'
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build & Publish ZIP
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+        command: 'restore'
+        projects: '$(functionsProject)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build'
+      inputs:
+        command: 'build'
+        projects: '$(functionsProject)'
+        arguments: '--configuration $(buildConfiguration)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish (ZIP)'
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: '$(functionsProject)'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
+        zipAfterPublish: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/publish'
+        ArtifactName: '$(artifactName)'
+        publishLocation: 'Container'
+
+- stage: Deploy
+  displayName: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: DeployFunction
+    displayName: 'Deploy Linux Azure Function App'
+    environment: 'dev'
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: '$(artifactName)'
+
+          - task: AzureFunctionApp@2
+            displayName: 'Deploy Function App (Linux ZIP)'
+            inputs:
+              connectedServiceNameARM: '$(azureServiceConnection)'
+              appType: 'functionAppLinux'
+              appName: '$(functionAppName)'
+              package: '$(Pipeline.Workspace)/$(artifactName)/**/*.zip'
+              deploymentMethod: 'zipDeploy'
+
+          - task: AzureCLI@2
+            displayName: 'Configure App Settings (Key Vault references + "__" keys)'
+            inputs:
+              azureSubscription: '$(azureServiceConnection)'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                set -euo pipefail
+
+                rg="$(resourceGroupName)"
+                app="$(functionAppName)"
+                kv="$(keyVaultUri)"
+                kv="${kv%/}"
+
+                # App Service Key Vault reference format:
+                # @Microsoft.KeyVault(SecretUri=https://{vault-name}.vault.azure.net/secrets/{secret-name})
+                aiRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_AppInsightsConn))"
+                dvRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_DataverseClientSecret))"
+                fsRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_FscmClientSecret))"
+                acsRef="@Microsoft.KeyVault(SecretUri=${kv}/secrets/$(kvSecret_AcsEmailConn))"
+
+                az functionapp config appsettings set \
+                  --resource-group "$rg" \
+                  --name "$app" \
+                  --settings \
+                  "AZURE_FUNCTIONS_ENVIRONMENT=Development" \
+                  "APPLICATIONINSIGHTS_CONNECTION_STRING=$aiRef" \
+                  "AccrualSchedule=0 0 0 * * *" \
+                  "KeyVault__VaultUri=${kv}/" \
+                  "Dataverse__Auth__TenantId=bda43523-4404-4833-b00d-90e88aa1f2b3" \
+                  "Dataverse__Auth__ClientId=a2d2809d-bb81-4640-8960-db9770c32de5" \
+                  "Dataverse__Auth__ClientSecret=$dvRef" \
+                  "FsaIngestion__DataverseApiBaseUrl=https://rpc-ue-dev-fs02.api.crm.dynamics.com/api/data/v9.2/" \
+                  "FsaIngestion__PageSize=500" \
+                  "FsaIngestion__MaxPages=20" \
+                  "FsaIngestion__PreferMaxPageSize=5000" \
+                  "FsaIngestion__OrFilterChunkSize=25" \
+                  "FsaIngestion__FetchStrategy=FullFetch" \
+                  "FsaIngestion__WorkOrderFilter=((msdyn_systemstatus eq 690970000 or msdyn_systemstatus eq 690970001 or msdyn_systemstatus eq 690970002))" \
+                  "Endpoints__FscmBaseUrl=https://rpc-ue-dev-fs02.operations.dynamics.com/" \
+                  "Fscm__Auth__TenantId=bda43523-4404-4833-b00d-90e88aa1f2b3" \
+                  "Fscm__Auth__ClientId=c7ed9a22-a232-4b5f-b11a-cb4acc5939f5" \
+                  "Fscm__Auth__ClientSecret=$fsRef" \
+                  "Fscm__Auth__DefaultScope=https://rpc-ue-dev-fs02.operations.dynamics.com/.default" \
+                  "Fscm__JournalHistoryOrFilterChunkSize=25" \
+                  "Fscm__ReleasedDistinctProductsOrFilterChunkSize=25" \
+                  "Fscm__SubProjectPath=/api/services/RPCSubProjectCreationWOIntServGrp/RPCSubProjectCreationWOIntServ/createSubProject" \
+                  "Fscm__JournalValidatePath=/api/services/RPCJournalValidationWOIntServGrp/RPCJournalValidationWOIntServ/validate" \
+                  "Fscm__JournalCreatePath=/api/services/RPCJournalOperationWOIntServGrp/RPCJournalOperationWOIntServ/runJournalAsyncOperation" \
+                  "Fscm__JournalPostPath=/api/services/RPCJournalPostingWOIntServGrp/RPCJournalPostingWOIntServ/postJournal" \
+                  "Fscm__UpdateInvoiceAttributesPath=/api/services/RPCInvoiceAttributesWOIntServGrp/RPCInvoiceAttributesWOIntServ/runAttributesAsyncOperation" \
+                  "Fscm__UpdateProjectStatusPath=/api/services/RPCSubProjectStatusWOIntServGrp/RPCSubProjectStatusWOIntServ/updateStatus" \
+                  "Fscm__Periods__FiscalCalendarIdOverride=Fis Cal" \
+                  "Notifications__ErrorDistributionList=schakbra35946@RPC.NET" \
+                  "Notifications__InvalidPayloadDistributionList=schakbra35946@RPC.NET" \
+                  "AcsEmail__Enabled=true" \
+                  "AcsEmail__ConnectionString=$acsRef" \
+                  "AcsEmail__FromAddress=DoNotReply@7a764680-845f-4a41-81ff-c2a6ba519128.azurecomm.net" \
+                  "AcsEmail__FromDisplayName=AIS Local" \
+                  "AcsEmail__WaitUntilCompleted=false" \
+                  "Fscm__ReleasedDistinctProductsCache__Enabled=true" \
+                  "Fscm__ReleasedDistinctProductsCache__Ttl=1.00:00:00" \
+                  "Fscm__ReleasedDistinctProductsCache__NegativeTtl=01:00:00" \
+                  "Fscm__ReleasedDistinctProductsCache__MaxItemCountPerCall=200000" \
+                  "AisLogging__LogPayloadBodies=false" \
+                  "AisLogging__LogMultiWoPayloadBody=false" \
+                  "AisLogging__IncludeDeltaReasonKey=true" \
+                  "HttpPolicies__Dataverse__TimeoutSeconds=60" \
+                  "HttpPolicies__Dataverse__Retries=6" \
+                  "HttpPolicies__Dataverse__MaxBackoffSeconds=30" \
+                  "HttpResilience__UseJitter=true" \
+                  "HttpPolicies__Fscm__TimeoutSeconds=120" \
+                  "HttpPolicies__Fscm__Retries=5" \
+                  "HttpPolicies__Fscm__MaxBackoffSeconds=30
+
+                echo "App settings applied successfully."

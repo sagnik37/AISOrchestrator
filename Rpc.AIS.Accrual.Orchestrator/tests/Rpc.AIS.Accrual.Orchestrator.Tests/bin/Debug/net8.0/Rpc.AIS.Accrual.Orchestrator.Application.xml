@@ -1,0 +1,946 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rpc.AIS.Accrual.Orchestrator.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.PostErrorMessageParser">
+            <summary>
+            Parses structured fields out of standardized <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError"/> messages.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.PostErrorMessageParser.InvalidWoRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>WO validation failed\\.\\s*WorkOrderGUID=(?&lt;guid&gt;[^,]+),\\s*WO Number=(?&lt;wo&gt;[^.]+)\\.\\s*Info=(?&lt;info&gt;.*?)(?:\\s+Errors:\\s*(?&lt;errs&gt;.*))?$</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Singleline | RegexOptions.CultureInvariant</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "WO validation failed.".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "WorkOrderGUID=".<br/>
+            ○ "guid" capture group.<br/>
+                ○ Match a character other than ',' atomically at least once.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "WO Number=".<br/>
+            ○ "wo" capture group.<br/>
+                ○ Match a character other than '.' atomically at least once.<br/>
+            ○ Match '.'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "Info=".<br/>
+            ○ "info" capture group.<br/>
+                ○ Match any character lazily any number of times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ Match a whitespace character atomically at least once.<br/>
+                ○ Match the string "Errors:".<br/>
+                ○ Match a whitespace character greedily any number of times.<br/>
+                ○ "errs" capture group.<br/>
+                    ○ Match any character greedily any number of times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.RunIdGenerator">
+            <summary>
+            Generates run identifiers and correlation identifiers. Uses compact GUIDs.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.StatusChangeService">
+            <summary>
+            Provides status change service behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.StatusChangeService.HandleAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.StatusChangeRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes handle async.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.SubProjectProvisioningService">
+            <summary>
+            Orchestrates FSCM subproject creation for a single Work Order request.
+            Performs request validation, delegates to FSCM client, and emits AIS logs for observability.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.SubProjectProvisioningService.Validate(Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest)">
+            <summary>
+            Validates SubProjectCreateRequest using reusable endpoint validator and maps to SubProjectError.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoDeltaPayloadService">
+            <summary>
+            Provides wo delta payload service behavior.
+            </summary>
+            <summary>
+            Provides wo delta payload service behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoDeltaPayloadService.Keys">
+            <summary>
+            Provides keys behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoDeltaPayloadService.ForceAllLinesInactive(System.Text.Json.Nodes.JsonNode)">
+            <summary>
+            Mutates the parsed payload to make every line inactive (delta => full reversal).
+            We stamp both 'statecode' (1) and 'IsActive' (false) to satisfy existing loose readers.
+            For CancelToZero behavior, we also zero the quantity-bearing field so old-subproject
+            customer change does not recreate positive item/expense/hour lines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoDeltaPayloadService.CopyFirstNonEmptyLoose(System.Text.Json.Nodes.JsonObject,System.Text.Json.Nodes.JsonObject,System.String,System.String[])">
+            <summary>
+            Copies the first non-empty candidate from src into dst[dstKey].
+            If dst already has dstKey but it's empty, it will be overwritten.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoDeltaPayloadService.TryDeriveHeaderDimensionDisplayValue(System.Text.Json.Nodes.JsonObject)">
+            <summary>
+            Derive WO-level DimensionDisplayValue from the first available journal line, if header is missing.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadJson">
+            <summary>
+            Shared JsonElement helpers for WO payload navigation.
+            Kept centralized so journal policies and validation engine can reuse without duplicating parsing logic.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationEngine">
+            <summary>
+            Orchestrates FSCM custom validation for normalized WO payload JSON.
+            Behavior:
+            - Never drops the whole WO due to invalid lines (line filtering is handled by local rules and/or FSCM filteredPayloadJson)
+            - Fail-closed on FSCM validation transport failure (returns 0 WorkOrdersAfter)
+            - Returns counts derived from input vs filtered payload
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.FsaDeltaPayload.FsaDeltaPayloadJsonUtil">
+            <summary>
+            Small JSON helper utilities used by the FSA delta payload full-fetch path.
+            Kept in one place to avoid duplicating fragile JSON parsing logic.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.FsaDeltaPayload.FsaDeltaPayloadJsonUtil.TryFormattedOnly(System.Text.Json.JsonElement,System.String,System.String@)">
+            <summary>
+            Tries to read only the formatted value for a field (Dataverse OData formatted value annotation).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.FsaDeltaPayload.FsaDeltaPayloadJsonUtil.ParseGuidLoose(System.String)">
+            <summary>
+            Parse of a GUID that might be wrapped like "{guid}" or contain other noise.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaComparer">
+            <summary>
+            Provides delta comparer behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaComparer.ExtractWoKeys(System.Text.Json.JsonDocument)">
+            <summary>
+            Executes extract wo keys.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaCompareResult">
+            <summary>
+            Carries delta compare result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaCompareResult.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Carries delta compare result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaPayloadBuilder.BuildWoListPayload(System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaDeltaSnapshot},System.String,System.String,System.String,System.String)">
+            <summary>
+            Existing use-case contract: build outbound payload JSON as string.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaPayloadBuilder.Build``1(System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{``0},System.String)">
+            <summary>
+            Generic to avoid a compile-time dependency on a specific snapshot type name.
+            Caller can pass IReadOnlyList&lt;AnySnapshotType&gt; and this will reflect required properties.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.DeltaPayloadBuilder.ResolveJournalActionSuffixForTriggeredBy(System.String)">
+            <summary>
+            Resolve the journal action suffix used in JournalDescription based on trigger source.
+            This is intentionally tolerant of casing and minor variants (e.g., AdhocBulk vs AdHocBulk).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.InvoiceAttributes.InvoiceAttributeDeltaBuilder">
+             <summary>
+             Compares FS attribute values against FSCM current values (both in memory) and returns delta updates.
+             FS is always system-of-record: if values differ, FS value is sent to FSCM.
+            
+             NOTE (case-insensitive schema matching):
+             - FS may send schema keys like "rpc_wellname"
+             - FSCM FieldFXSchemaName may be "rpc_Wellname"
+             This builder normalizes both sides when mapping keys and when reading the FSCM snapshot,
+             so camel-case differences do not prevent updates.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.InvoiceAttributes.RuntimeInvoiceAttributeMapper">
+            <summary>
+            Generates runtime mapping between FS attribute keys and FSCM attribute names.
+            Mapping is generated during execution using FSCM definitions ("attribute table") stored in memory.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.IJournalTypePolicy">
+            <summary>
+            Journal-type specific behavior (section key + local validations).
+            Intended to eliminate journal-type switches and keep the validation engine open for extension.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.IJournalTypePolicy.SectionKey">
+            <summary>
+            Section key used in the payload for this journal type (e.g., WOItemLines).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.IJournalTypePolicy.ValidateLocalLine(System.Guid,System.String,System.Guid,System.Text.Json.JsonElement,System.Collections.Generic.List{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationFailure})">
+            <summary>
+            Applies local (in-process) validations for a single journal line.
+            Implementations should add failures to <paramref name="invalidFailures"/> only.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.IJournalTypePolicyResolver">
+            <summary>
+            Resolves the configured <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.IJournalTypePolicy"/> for a given <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType"/>.
+            Exposed to allow other layers (e.g., Infrastructure) to reuse the same journal metadata (section keys),
+            avoiding journal-type switches.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.JournalTypePolicyBase">
+            <summary>
+            Base journal policy with shared validations (quantity required for all).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.JournalPolicies.JournalTypePolicyResolver.DefaultJournalTypePolicy">
+            <summary>
+            Safe fallback policy used when no policy is registered for a journal type.
+            Ensures SectionKey is valid so JSON building cannot crash.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer">
+            <summary>
+            Composes an HTML email body for orchestration failures.
+            Adds a clean "Invalid Work Orders (Validation Failures)" section by parsing the standardized
+            error message produced by PostingHttpClient (Code = FSCM_VALIDATION_FAILED_WO).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer.ComposeHtml(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult)">
+            <summary>
+            Executes compose html.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer.BuildInvalidWoRows(System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError})">
+            <summary>
+            Executes build invalid wo rows.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer.TrimForEmail(System.String,System.Int32)">
+            <summary>
+            Executes trim for email.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer.InvalidWoRow">
+            <summary>
+            Carries invalid wo row data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.ErrorEmailComposer.InvalidWoRow.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries invalid wo row data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationPipeline.FscmReferenceValidator">
+            <summary>
+            Optional FSCM-backed reference validation (custom endpoint) that can mark lines/WO as retryable/invalid.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationPipeline.WoLocalValidator">
+            <summary>
+            Performs local (AIS-side) validation and filtering without FSCM calls.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationPipeline.WoPayloadJsonHelpers">
+            <summary>
+            Small JSON helpers for WO payload validation.
+            Kept separate so mappers/validators don't re-implement parsing logic.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationPipeline.WoPayloadJsonHelpers.TryParseFscmOrIsoDate(System.String,System.DateTime@)">
+            <summary>
+            Parses TransactionDate / rpc_OperationsDate that may be either:
+            - FSCM style: /Date(1767052800000)/
+            - ISO-8601: 2026-01-31 or 2026-01-31T00:00:00Z
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Services.WoPayloadValidationRules.WoLocalValidationRule">
+            <summary>
+            Local (AIS-side) payload validation rule executed before calling FSCM endpoints.
+            Bridges async rule pipeline (IWoPayloadRule) to sync validator (IWoLocalValidator).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.UseCases.FsaDeltaPayload.FsaDeltaPayloadUseCase.BuildFullFetchAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadInputDto,Rpc.AIS.Accrual.Orchestrator.Core.Options.FsaDeltaPayloadRunOptions,System.Threading.CancellationToken)">
+            <summary>
+            Executes build full fetch async.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.UseCases.FsaDeltaPayload.FsaDeltaPayloadUseCase.CollectLookupIds(System.Text.Json.JsonDocument,System.Collections.Generic.HashSet{System.Guid},System.String[])">
+            <summary>
+            Executes collect lookup ids.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.UseCases.FsaDeltaPayload.IFsaDeltaPayloadUseCase.BuildSingleWorkOrderAnyStatusAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadInputDto,Rpc.AIS.Accrual.Orchestrator.Core.Options.FsaDeltaPayloadRunOptions,System.Threading.CancellationToken)">
+            <summary>
+            Builds a WO payload for a single work order GUID even if it is not in the OPEN set.
+            Intended for job-operation flows (e.g., Cancel) where the WO may already be closed/cancelled in FSA.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.AisLoggerPayloadExtensions">
+            <summary>
+            Production-safe helpers for logging large JSON payloads into App Insights traces.
+            - Logs sha256 + length always
+            - Logs a snippet (and optional chunks) when enabled
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.AisLoggerPayloadExtensions.Sha256Hex(System.String)">
+            <summary>
+            Executes sha 256 hex.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.AisValidationPostErrorBuilder">
+            <summary>
+            Provides ais validation post error builder behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.AisValidationPostErrorBuilder.BuildConcisePostErrors(System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationFailure},System.Int32)">
+            <summary>
+            Executes build concise post errors.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.JsonLooseKey">
+            <summary>
+            Shared loose-key JSON helpers (ignore spaces/underscores/hyphens; case-insensitive).
+            Extracted so both Core services and Infrastructure clients reuse identical behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.JsonLooseKey.NormalizeKeyLoose(System.String)">
+            <summary>
+            Executes normalize key loose.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.JsonLooseKey.TryGetNodeLoose(System.Text.Json.Nodes.JsonObject,System.String,System.Text.Json.Nodes.JsonNode@)">
+            <summary>
+            Executes try get node loose.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.JsonLooseKey.TryGetStringLoose(System.Text.Json.Nodes.JsonObject,System.String,System.String@)">
+            <summary>
+            Executes try get string loose.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.JsonLooseKey.TryGetPropertyLoose(System.Text.Json.JsonElement,System.String,System.Text.Json.JsonElement@)">
+            <summary>
+            Executes try get property loose.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.LogText">
+            <summary>
+            Utility helpers for keeping log messages within reasonable size limits.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.LogText.TrimForLog(System.String,System.Int32)">
+            <summary>
+            Trims a string to a safe maximum length for logs (App Insights trace size guard).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.LogText.NormalizeGuidString(System.String)">
+            <summary>
+            Executes normalize guid string.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.WoPayloadJsonToolkit">
+            <summary>
+            Shared JSON helper routines for the Work Order payload contract.
+            Placed in Core so both infrastructure clients and core services can reuse identical behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.WoPayloadJsonToolkit.NormalizeWoPayloadToWoListKey(System.String)">
+            <summary>
+            Normalizes the WO payload shape so that the root contains "_request" and "_request.WOList".
+            This tolerates common contract variants (e.g., "request" vs "_request", "woList" vs "WOList").
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.WoPayloadJsonToolkit.DetectJournalTypesPresent(System.String,System.String,System.String,System.String)">
+            <summary>
+            Detects which journal sections are present in the payload by inspecting non-empty JournalLines arrays.
+            Returns types in stable order (Item, Expense, Hour).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.ThrottledLog">
+            <summary>
+            Throttled debug logging helper to make best-effort parsing/probing failures observable
+            without spamming logs.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.ThrottledLog.DefaultMaxOccurrences">
+            <summary>Default: log only the first 3 occurrences per key, per process.</summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Utilities.ThrottledTrace">
+            <summary>
+            Throttled trace helper for static helpers that do not have an ILogger available.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.AisDiagnosticsOptions">
+            <summary>
+            Provides ais diagnostics options behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.AisDiagnosticsOptionsAdapter">
+            <summary>
+            Provides ais diagnostics options adapter behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.FsaDeltaPayloadRunOptions">
+            <summary>
+            Minimal run-time options required by the delta payload build use case.
+            Mapped from Infrastructure FsOptions at the Functions boundary.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.FscmCustomValidationOptions">
+            <summary>
+            Options for calling the FSCM custom validation endpoint.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.FscmCustomValidationOptions.EndpointPath">
+            <summary>
+            Relative endpoint path under the FSCM base URL.
+            Example: "/api/services/AIS/Validate" or "/api/services/RpcAis/Validate"
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.FscmCustomValidationOptions.TimeoutSeconds">
+            <summary>
+            HTTP timeout in seconds for the validation call.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.InvoiceAttributeMappingOptions">
+            <summary>
+            Provides mapping from FSA (Dataverse) attribute logical names to FSCM invoice attribute names.
+            Loaded once at the beginning of each execution (app configuration / environment variables).
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.InvoiceAttributeMappingOptions.FsToFscm">
+            <summary>
+            Key: FSA attribute logical name (e.g., rpc_wellname)
+            Value: FSCM invoice attribute name to use in the outbound payload.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.NotificationOptions">
+            <summary>
+            Provides notification options behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Options.NotificationOptions.GetRecipients">
+            <summary>
+            Executes get recipients.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Options.NotificationOptions.GetInvalidPayloadRecipients">
+            <summary>
+            Executes get invalid payload recipients.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions">
+            <summary>
+            Controls AIS-side payload validation behavior.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions.DropWholeWorkOrderOnAnyInvalidLine">
+            <summary>
+            If true (default), any invalid journal line causes the entire Work Order
+            to be excluded from the postable payload for that journal type.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions.EnableFscmCustomEndpointValidation">
+            <summary>
+            Enables calling the FSCM custom validation endpoint AFTER local AIS validation.
+            This should be enabled when FSCM provides a dedicated validation API to validate the AIS payload contract.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions.FailClosedOnFscmCustomValidationError">
+            <summary>
+            If true (default), failures calling the FSCM custom validation endpoint will fail-closed:
+            AIS will stop the run (FailFast) rather than posting potentially invalid data.
+            If false, remote validation call failures will be treated as retryable for the affected work orders.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions.RetryMaxAttempts">
+            <summary>
+            Maximum attempts for retryable validation failures (per journal type) within one orchestration run.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Options.PayloadValidationOptions.RetryDelaysMinutes">
+            <summary>
+            Retry delays in minutes for attempts 1..N (1-based). If there are fewer entries than attempts,
+            the last delay value is reused.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.ProcessingMode">
+            <summary>
+            Defines processing mode values.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Options.ProcessingOptions">
+            <summary>
+            Provides processing options behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IAisDiagnosticsOptions">
+            <summary>
+            Defines i ais diagnostics options behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IAisLogger">
+            <summary>
+            Defines i ais logger behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IEmailSender">
+            <summary>
+            Defines i email sender behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaDeltaPayloadEnricher">
+            <summary>
+            Enriches outbound delta payload JSON with FS-only fields (company/subproject, currency/resource/warehouse/site/lineNum/projectCategory).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaDeltaPayloadEnricher.InjectWorkOrderHeaderFieldsIntoPayload(System.String,System.Collections.Generic.IReadOnlyDictionary{System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.WoHeaderMappingFields})">
+            <summary>
+            Injects mapping-only Work Order header fields fetched from Dataverse into WOList entries.
+            Not used for delta calculation.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaDeltaPayloadEnricher.InjectJournalNamesIntoPayload(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.LegalEntityJournalNames})">
+            <summary>
+            Adds JournalName at the journal header level (WOItemLines/WOExpLines/WOHourLines) based on legal entity settings in FSCM.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaDeltaPayloadEnricher.StampJournalDescriptionsIntoPayload(System.String,System.String)">
+            <summary>
+            Recomputes and stamps JournalDescription/JournalLineDescription using the final header values
+            (WorkOrderID + SubProjectId) after all enrichment has completed.
+            Action must be one of Post/Reverse/Recreate/Cancel.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaLineFetcher">
+            <summary>
+            Defines i fsa line fetcher behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaLineFetcher.GetWorkOrderIdsWithProductsAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Lightweight presence query: returns WorkOrderIds that have at least one product line.
+            This must not fetch full product lines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaLineFetcher.GetWorkOrderIdsWithServicesAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Lightweight presence query: returns WorkOrderIds that have at least one service line.
+            This must not fetch full service lines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaProductLineMapper.Map(System.Text.Json.JsonElement,System.Guid,System.String,System.Collections.Generic.Dictionary{System.Guid,System.String},System.Collections.Generic.Dictionary{System.Guid,System.String})">
+            <summary>
+            Maps a Dataverse Work Order Product row into a <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaProductLine"/>.
+            Returns the mapped line and a flag indicating whether it should be treated as Inventory.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsaServiceLineMapper.Map(System.Text.Json.JsonElement,System.Guid,System.String)">
+            <summary>
+            Maps a Dataverse Work Order Service row into a <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaServiceLine"/>.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmAccountingPeriodClient">
+            <summary>
+            Defines i fscm accounting period client behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmCustomValidationClient">
+            <summary>
+            Calls the FSCM custom validation endpoint for an AIS Work Order payload.
+            This is a remote validation step that runs AFTER AIS local contract checks.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmCustomValidationClient.ValidateAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Validates the provided AIS payload JSON for the given journal type and returns any failures.
+            Implementations must throw only for programmer errors; transport failures should be represented
+            as failures with <see cref="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.Retryable"/> or <see cref="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.FailFast"/>
+            depending on policy.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmDocuAttachmentsClient">
+            <summary>
+            Writes document attachment links into FSCM.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmGlobalAttributeMappingClient">
+            <summary>
+            Provides an in-memory mapping between FSA attribute keys and FSCM attribute names.
+            Source of truth is the FSCM OData entity set AttributeTypeGlobalAttributes (fields: Name, FSA).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmGlobalAttributeMappingClient.GetFsToFscmNameMapAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Threading.CancellationToken)">
+            <summary>
+            Returns a mapping dictionary where the key is the FSA attribute key (AttributeTypeGlobalAttributes.FSA)
+            and the value is the FSCM attribute name (AttributeTypeGlobalAttributes.Name).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmInvoiceAttributesClient">
+            <summary>
+            FSCM custom endpoints for invoice attributes.
+            Used for runtime mapping (definitions), current value snapshot, and updates.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmJournalFetchClient">
+            <summary>
+            Fetches journal lines from FSCM (OData) for a given Work Order.
+            Used for delta calculation (group by WorkOrderLineId).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmJournalFetchClient.FetchByWorkOrdersAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Collections.Generic.IReadOnlyCollection{System.Guid},System.Threading.CancellationToken)">
+             <summary>
+             Fetch journal lines from FSCM for a set of WorkOrder GUIDs (OR-filter batched) for a given JournalType.
+            
+             Implementations MUST chunk the input IDs to avoid URL-length / OData parsing limits.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmLegalEntityIntegrationParametersClient">
+            <summary>
+            Retrieves per-legal-entity integration parameters from FSCM.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmLegalEntityIntegrationParametersClient.GetJournalNamesAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Fetches journal name identifiers for the given legal entity (DataAreaId).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmProjectStatusClient">
+            <summary>
+            Custom endpoint to update FSCM project/subproject status/stage.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmProjectStatusClient.UpdateAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.String,System.String,System.Guid,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            New contract (preferred): update project status for a specific WO + SubProjectId.
+            Payload contract:
+            {
+              "_request": {
+                "WOList": [
+                  {
+                    "Company": "425",
+                    "SubProjectId": "425-P0000001-00001",
+                    "WorkOrderGUID": "{...}",
+                    "WorkOrderID": "...",
+                    "Status": 5|6
+                  }
+                ]
+              }
+            }
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmProjectStatusClient.UpdateAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Guid,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Legacy overload: some callers historically used a GUID SubProjectId.
+            Preserved for backward compatibility.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmProjectStatusClient.UpdateAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Legacy overload: older callers used a textual status ("Posted", "Cancelled", ...).
+            Preserved for backward compatibility.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmReleasedDistinctProductsClient">
+            <summary>
+            Fetches project category identifiers from FSCM CDSReleasedDistinctProducts for a set of ItemNumbers.
+            This is the ONLY source of ProjCategoryId/RPCProjCategoryId (Dataverse enrichment is intentionally not used).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.ReleasedDistinctProductCategory">
+            <summary>
+            FSCM category ids for a released distinct product.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.ReleasedDistinctProductCategory.#ctor(System.String,System.String,System.String)">
+            <summary>
+            FSCM category ids for a released distinct product.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmSubProjectClient">
+            <summary>
+            Defines i fscm sub project client behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFscmWoPayloadValidationClient">
+            <summary>
+            Calls FSCM custom validation endpoint for WO payloads.
+            Implemented in Infrastructure.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.RemoteWoPayloadValidationResult">
+            <summary>
+            Parsed outcome of remote validation call.
+            Kept in Core so Core can consume without referencing Infrastructure.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.RemoteWoPayloadValidationResult.#ctor(System.Boolean,System.Int32,System.String,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationFailure},System.String,System.Int64,System.String)">
+            <summary>
+            Parsed outcome of remote validation call.
+            Kept in Core so Core can consume without referencing Infrastructure.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IFsWorkOrderAttachmentClient">
+            <summary>
+            Reads work-order related document attachments from Field Service (Dataverse).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IInvalidPayloadNotifier">
+            <summary>
+            Notifies about invalid work orders/lines found during AIS-side payload validation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostingClient">
+            <summary>
+            Client responsible for posting validated records to FSCM journals.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostingClient.PostAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.AccrualStagingRef},System.Threading.CancellationToken)">
+            <summary>
+            Existing contract: post staging references grouped by journal type.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostingClient.PostFromWoPayloadAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.String,System.Threading.CancellationToken)">
+            <summary>
+            New contract: post using the raw WO payload JSON (as received from FSA),
+            validating the same payload and filtering failed work orders before posting.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostingClient.PostValidatedWoPayloadAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.String,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError},System.String,System.Threading.CancellationToken)">
+             <summary>
+             Post an already-validated WO payload batch (no validation call is performed in this method).
+            
+             Use this for large payload scenarios where:
+             -  validate once (outside) and
+             -  post the payload in smaller batches to avoid timeouts and throttling.
+            
+             The caller should pass any validation-related errors in <paramref name="preErrors"/> so they can be carried
+             through to the final <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult"/>.
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostingClient.ValidateOnceAndPostAllJournalTypesAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.String,System.Threading.CancellationToken)">
+             <summary>
+             Validate the full WO payload ONCE (covers all journal types) and then post per journal type using the same
+             validation response, filtering out only the failed journal type(s) per work order.
+            
+             This is the recommended path for WO payloads that may contain Item/Expense/Hour journals together.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostResultHandler">
+            <summary>
+            Extensibility point invoked after a posting attempt.
+            Handlers can implement additional follow-up actions (notifications, compensations, retries, etc.)
+            without modifying the posting client, maintaining Open/Closed Principle.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostResultHandler.CanHandle(Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult)">
+            <summary>
+            Returns true if this handler should run for the given post result.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IPostResultHandler.HandleAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult,System.Threading.CancellationToken)">
+            <summary>
+            Performs the handler's post-processing action.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IRunIdGenerator">
+            <summary>
+            Defines i run id generator behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.ISingleWorkOrderPostingClient">
+            <summary>
+            Defines i single work order posting client behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.PostSingleWorkOrderResponse">
+            <summary>
+            Carries post single work order response data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.PostSingleWorkOrderResponse.#ctor(System.Boolean,System.Int32,System.String)">
+            <summary>
+            Carries post single work order response data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IStatusChangeService">
+            <summary>
+            Defines i status change service behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoDeltaPayloadService">
+            <summary>
+            Defines i wo delta payload service behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoDeltaPayloadBuildResult">
+            <summary>
+            Carries wo delta payload build result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoDeltaPayloadBuildResult.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Carries wo delta payload build result data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoDeltaPayloadServiceV2">
+            <summary>
+            Delta builder with explicit options (baseline scoping + target-mode overrides).
+            This is additive to <see cref="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoDeltaPayloadService"/>.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoDeltaTargetMode.Normal">
+            <summary>Normal delta semantics (current behavior).</summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoDeltaTargetMode.CancelToZero">
+            <summary>
+            Force the output payload to drive the target subproject to zero by treating all lines as inactive.
+            Used for cancellation/reversal scenarios.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoPayloadRule">
+            <summary>
+            Pluggable rule for Work Order payload validation.
+            Rules should be deterministic and side-effect free (except logging).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoPayloadRule.ApplyAsync(Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoPayloadRuleContext,System.Threading.CancellationToken)">
+            <summary>
+            Apply the rule to the validation context.
+            Rules may short-circuit by setting <see cref="P:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoPayloadRuleContext.Result"/> and <see cref="P:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoPayloadRuleContext.StopProcessing"/>.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoPayloadValidationEngine">
+            <summary>
+            Validates an AIS Work Order payload (AIS contract) prior to posting to FSCM.
+            Implementations must be deterministic and side-effect free.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWoPayloadValidationEngine.ValidateAndFilterAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Validates a WO payload JSON and returns a result containing invalid details and
+            a filtered payload JSON containing ONLY valid work orders.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.IWorkOrderStatusUpdateClient">
+            <summary>
+            Client abstraction for sending a work-order status update payload to FSCM.
+            Payload is forwarded unchanged (raw JSON).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Abstractions.WoPayloadRuleContext">
+            <summary>
+            Mutable context shared across WO payload validation rules.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.DefaultFsaDeltaPayloadEnrichmentPipeline">
+            <summary>
+            OCP-friendly enrichment pipeline: steps are discovered via DI.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.EnrichmentContext">
+            <summary>
+            Immutable input bundle for outbound delta payload enrichment.
+            Keeps the use case orchestration thin and enables OCP-friendly enrichment steps.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.EnrichmentContext.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Services.FsaDeltaPayload.FsLineExtras},System.Collections.Generic.IReadOnlyDictionary{System.Guid,System.String},System.Collections.Generic.IReadOnlyDictionary{System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.LegalEntityJournalNames},System.Collections.Generic.IReadOnlyDictionary{System.Guid,System.String},System.Collections.Generic.IReadOnlyDictionary{System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.WoHeaderMappingFields})">
+            <summary>
+            Immutable input bundle for outbound delta payload enrichment.
+            Keeps the use case orchestration thin and enables OCP-friendly enrichment steps.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.IFsaDeltaPayloadEnrichmentPipeline">
+            <summary>
+            Executes enrichment steps in a deterministic order.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.IFsaDeltaPayloadEnrichmentStep">
+            <summary>
+            One responsibility: apply exactly one enrichment concern to the outbound payload.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.IFsaDeltaPayloadEnrichmentStep.Name">
+            <summary>Stable identifier for ordering/logging.</summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Application.Features.Delta.FsaDeltaPayload.Services.EnrichmentPipeline.IFsaDeltaPayloadEnrichmentStep.Order">
+            <summary>Execution order (ascending). Keep gaps for easy insertion.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.InvalidWoRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the InvalidWoRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.InvalidWoRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rpc.AIS.Accrual.Orchestrator.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests">
+            <summary>
+            Provides delta payload generation tests behavior.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle" -->
+        <!-- Badly formed XML comment ignored for member "M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle.#ctor(System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine})" -->
+        <!-- Badly formed XML comment ignored for member "P:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle.Item" -->
+        <!-- Badly formed XML comment ignored for member "P:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle.Expense" -->
+        <!-- Badly formed XML comment ignored for member "P:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle.Hour" -->
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.NewContext">
+            <summary>
+            Executes new context.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.BuildService(Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.HistoryBundle,System.DateTime,System.Func{System.DateTime,System.Boolean})">
+            <summary>
+            Executes build service.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.BuildBaselineHistory(System.Guid,System.Guid,System.Guid,System.Guid,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Builds FSCM history that matches the BASE FSA payload by default.
+            This is critical: if history doesn't match expense/hour base attributes,
+            the engine will correctly detect FieldChange and will emit reverse+recreate.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.MutateFsaLine(System.String,System.String,System.Guid,System.Action{System.Text.Json.Nodes.JsonObject})">
+            <summary>
+            Executes mutate fsa line.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.Parse(System.String)">
+            <summary>
+            Executes parse.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.GetJournalLines(System.Text.Json.Nodes.JsonObject,System.Guid,System.String)">
+            <summary>
+            Executes get journal lines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TryGetJournalLines(System.Text.Json.Nodes.JsonObject,System.Guid,System.String,System.Collections.Generic.List{System.Text.Json.Nodes.JsonObject}@)">
+            <summary>
+            Executes try get journal lines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.GetGuid(System.Text.Json.Nodes.JsonNode)">
+            <summary>
+            Executes get guid.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.GetDecimal(System.Text.Json.Nodes.JsonObject,System.String)">
+            <summary>
+            Executes get decimal.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.GetString(System.Text.Json.Nodes.JsonObject,System.String)">
+            <summary>
+            Executes get string.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TestDiagOptions">
+            <summary>
+            Provides test diag options behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TestAisLogger">
+            <summary>
+            Provides test ais logger behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TestAisLogger.InfoAsync(System.String,System.String,System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Executes info async.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TestAisLogger.WarnAsync(System.String,System.String,System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Executes warn async.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.Delta.DeltaPayloadGenerationTests.TestAisLogger.ErrorAsync(System.String,System.String,System.String,System.Exception,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Executes error async.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.CapturingDurableTaskClient">
+            <summary>
+            DurableTaskClient test double that captures inputs for ScheduleNewOrchestrationInstanceAsync.
+            Implemented defensively to tolerate DurableTaskClient/OrchestrationMetadata signature drift.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpMessageHandler">
+            <summary>
+            Provides fake http message handler behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Executes send async.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpMessageHandler.Json(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Executes json.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpRequestData">
+            <summary>
+            Provides fake http request data behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpRequestData.CreateResponse">
+            <summary>
+            Executes create response.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData">
+            <summary>
+            Provides fake http response data behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData.FakeHttpCookies">
+            <summary>
+            Provides fake http cookies behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData.FakeHttpCookies.CreateNew">
+            <summary>
+            Executes create new.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData.FakeHttpCookies.Append(Microsoft.Azure.Functions.Worker.Http.IHttpCookie)">
+            <summary>
+            Executes append.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData.FakeHttpCookies.Append(System.String,System.String)">
+            <summary>
+            Executes append.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.FakeHttpResponseData.FakeHttpCookies.SimpleHttpCookie">
+            <summary>
+            Provides simple http cookie behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.NoopAisLogger">
+            <summary>
+            Minimal no-op implementation for tests.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext">
+            <summary>
+            Provides test function context behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext.TryResolveFallback(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            Executes try resolve fallback.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext.SimpleInvocationFeatures">
+            <summary>
+            Provides simple invocation features behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext.SimpleInvocationFeatures.GetEnumerator">
+            <summary>
+            Executes get enumerator.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext.CompositeServiceProvider">
+            <summary>
+            Provides composite service provider behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Tests.TestDoubles.TestFunctionContext.CompositeServiceProvider.GetService(System.Type)">
+            <summary>
+            Executes get service.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,510 @@
+[
+  {
+    "name": "ValidateAndPostWoPayload",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.ValidateAndPostWoPayload",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "PostSingleWorkOrder",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.PostSingleWorkOrder",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "UpdateWorkOrderStatus",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.UpdateWorkOrderStatus",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "PostRetryableWoPayload",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.PostRetryableWoPayload",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "SyncInvoiceAttributes",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.SyncInvoiceAttributes",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "FinalizeAndNotifyWoPayload",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities.FinalizeAndNotifyWoPayload",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "BuildDeltaPayloadFromFscmHistory",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DeltaActivities.BuildDeltaPayloadFromFscmHistory",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "GetFsaDeltaPayload",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.FsaDeltaActivities.GetFsaDeltaPayload",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "UpdateProjectStage",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsActivities.UpdateProjectStage",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "SyncJobAttributesToProject",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsActivities.SyncJobAttributesToProject",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "CustomerChangeExecute",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsActivities.CustomerChangeExecute",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "UpdateProjectStatus",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsV2Activities.UpdateProjectStatus",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "TryExtractSubprojectGuid",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsV2ParsingActivities.TryExtractSubprojectGuid",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "activityTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "AccrualOrchestrator_Timer",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AccrualOrchestratorFunctions.RunTimerAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "timer",
+        "direction": "In",
+        "type": "timerTrigger",
+        "schedule": "%AccrualSchedule%",
+        "properties": {}
+      },
+      {
+        "name": "client",
+        "direction": "In",
+        "type": "durableClient",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "AccrualOrchestrator",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.AccrualOrchestrator",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "context",
+        "direction": "In",
+        "type": "orchestrationTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "PostJobOrchestrator",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsOrchestration.PostJobOrchestrator",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "context",
+        "direction": "In",
+        "type": "orchestrationTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "PostJobOrchestratorV2",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsOrchestration.PostJobOrchestratorV2",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "context",
+        "direction": "In",
+        "type": "orchestrationTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "CustomerChangeOrchestrator",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsOrchestration.CustomerChangeOrchestrator",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "context",
+        "direction": "In",
+        "type": "orchestrationTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "AdHocBatch_AllJobs",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocBatchAllJobsFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "adhoc/batch/all",
+        "properties": {}
+      },
+      {
+        "name": "client",
+        "direction": "In",
+        "type": "durableClient",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "AdHocBatch_SingleJob",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocBatchSingleJobFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "adhoc/batch/single",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "CancelJob",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CancelJobFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "job/cancel",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "CustomerChange",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CustomerChangeFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "job/customer-change",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "PostJob",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.PostJobFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "job/post",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "Warmup_Read",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.WarmupReadFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "warmup/read",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "FSCM_CreateSubProject",
+    "scriptFile": "Rpc.AIS.Accrual.Orchestrator.Functions.dll",
+    "entryPoint": "Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.RunAsync",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "post"
+        ],
+        "route": "fscm/subproject",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  }
+]

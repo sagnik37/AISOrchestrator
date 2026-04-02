@@ -1,0 +1,565 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rpc.AIS.Accrual.Orchestrator.Functions</name>
+    </assembly>
+    <members>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.DocumentAttachmentCopyRunner">
+            <summary>
+            Copies (links) Work Order document attachments from Field Service into FSCM.
+            This is a best-effort step and must not break posting in case of attachment issues.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.InvoiceAttributesUpdateRunner">
+             <summary>
+             Orchestration-level runner that reads InvoiceAttributes from the posting payload
+             and calls the FSCM UpdateInvoiceAttributes endpoint.
+            
+             :
+             - This must be called explicitly by orchestrators/endpoints.
+             - Posting (journal validate/create/post) must NOT call invoice update implicitly.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.InvoiceAttributeSyncRunner">
+             <summary>
+             Builds invoice attribute delta (FS -> FSCM) using Work Order header fields and FSCM snapshots,
+             and injects the computed InvoiceAttributes into the posting payload.
+             
+             :
+             - This component MUST NOT call FSCM "update" endpoints directly.
+             - Posting pipeline (FscmJournalPoster) is the single place that performs the actual update,
+               and it must happen AFTER successful journal posting (hard dependent).
+            
+             Rules:
+             - FS is system-of-record: FS overrides FSCM.
+             - If FS value is null but FSCM has value, AIS clears FSCM (sets null).
+             - Outbound payload uses FSCM attribute names (via Fs->Fscm mapping) OR fixed FSCM names for derived comparisons.
+            
+             Mapping source of truth (for standard fields):
+             - FSCM AttributeTypeGlobalAttributes (Name, FSA)
+            
+             Option B behavior:
+             - For each (Company, SubProjectId), FSCM definitions + current values are fetched ONCE and cached in-memory for the run.
+             - Comparisons/delta are performed against the in-memory snapshot.
+             </summary>
+             <summary>
+             Builds invoice attribute delta (FS -> FSCM) using Work Order header fields and FSCM snapshots,
+             and injects the computed InvoiceAttributes into the posting payload.
+             
+             :
+             - This component MUST NOT call FSCM "update" endpoints directly.
+             - Posting pipeline (FscmJournalPoster) is the single place that performs the actual update,
+               and it must happen AFTER successful journal posting (hard dependent).
+            
+             Rules:
+             - FS is system-of-record: FS overrides FSCM.
+             - If FS value is null but FSCM has value, AIS clears FSCM (sets null).
+             - Outbound payload uses FSCM attribute names (via Fs->Fscm mapping) OR fixed FSCM names for derived comparisons.
+            
+             Mapping source of truth (for standard fields):
+             - FSCM AttributeTypeGlobalAttributes (Name, FSA)
+            
+             Option B behavior:
+             - For each (Company, SubProjectId), FSCM definitions + current values are fetched ONCE and cached in-memory for the run.
+             - Comparisons/delta are performed against the in-memory snapshot.
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Services.InvoiceAttributeSyncRunner.EnrichPostingPayloadAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.String,System.Threading.CancellationToken)">
+             <summary>
+             Enriches the given posting payload JSON by injecting computed InvoiceAttributes onto each WO element
+             (only for WOs that have a delta vs FSCM snapshot).
+            
+             Orchestrators/endpoints must call FSCM update endpoint AFTER successful journal post using InvoiceAttributesUpdateRunner.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.IFscmProjectLifecycle">
+            <summary>
+            Abstractions used by Functions-layer Durable Activities for job operations.
+            Implementations are registered in DI. Some lifecycle steps may still be NOOP until FSCM endpoints are finalized.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Services.ICustomerChangeOrchestrator.ExecuteAsync(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Guid,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Executes the full Customer Change business process and returns the new SubProjectId.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.NoopFscmProjectLifecycle">
+            <summary>
+            Safe placeholder implementation: logs intent, does not call external systems.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.ActivitiesUseCase">
+            <summary>
+            Implements activity business logic (Activities.cs becomes an orchestration adapter only).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Services.CustomerChangeOrchestrator.BuildMinimalInvoicePayloadJson(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Minimal payload builder used when we have no delta payload and/or FullFetch is empty.
+            This payload is shaped like the posting envelope and is sufficient for the invoice sync/update pipeline.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Services.Summaries.WorkOrderProcessingSummaryBuilder.ValidationFailureRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>WO validation failed\\.\\s*WorkOrderGUID=(?&lt;guid&gt;[^,]+),\\s*WO Number=(?&lt;wo&gt;[^.]+)\\.\\s*Info=(?&lt;info&gt;.*?)(?:\\s+Errors:\\s*(?&lt;errs&gt;.*))?$</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Singleline | RegexOptions.CultureInvariant</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "WO validation failed.".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "WorkOrderGUID=".<br/>
+            ○ "guid" capture group.<br/>
+                ○ Match a character other than ',' atomically at least once.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "WO Number=".<br/>
+            ○ "wo" capture group.<br/>
+                ○ Match a character other than '.' atomically at least once.<br/>
+            ○ Match '.'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "Info=".<br/>
+            ○ "info" capture group.<br/>
+                ○ Match any character lazily any number of times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ Match a whitespace character atomically at least once.<br/>
+                ○ Match the string "Errors:".<br/>
+                ○ Match a whitespace character greedily any number of times.<br/>
+                ○ "errs" capture group.<br/>
+                    ○ Match any character greedily any number of times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.Activities">
+            <summary>
+            Durable activity adapter only. All business logic lives in <see cref="T:Rpc.AIS.Accrual.Orchestrator.Functions.Services.ActivitiesUseCase"/>.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DeltaActivities">
+             <summary>
+             Durable activity that converts an FS (Dataverse) payload into a delta-only payload
+             by comparing against FSCM journal history.
+            
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DeltaActivities.Sha256Hex(System.String)">
+            <summary>
+            Executes sha 256 hex.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.FsaDeltaActivities">
+            <summary>
+            Provides fsa delta activities behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsActivities">
+            <summary>
+            Durable Activities for job operations.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsV2Activities">
+            <summary>
+            Additive V2 job operation activities.
+            These activities are invoked only by the V2 job operation orchestrators/endpoints.
+            Existing functionality remains unchanged.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsV2ParsingActivities">
+            <summary>
+            Small, deterministic parsing activities for V2 job operation orchestrations.
+            Kept separate to avoid non-deterministic JSON parsing in orchestrator code.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AccrualOrchestratorFunctions">
+            <summary>
+            Provides accrual orchestrator functions behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration">
+            <summary>
+            Provides durable accrual orchestration behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RunInputDto">
+            <summary>
+            Carries run input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RunInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries run input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.WoPayloadPostingInputDto">
+            <summary>
+            Carries wo payload posting input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.WoPayloadPostingInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries wo payload posting input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RetryableWoPayloadPostingInputDto">
+            <summary>
+            Carries retryable payload posting input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RetryableWoPayloadPostingInputDto.#ctor(System.String,System.String,System.String,System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Int32,System.String)">
+            <summary>
+            Carries retryable payload posting input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.FinalizeWoPayloadInputDto">
+            <summary>
+            Carries finalize wo payload input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.FinalizeWoPayloadInputDto.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.List{Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult},System.String[],System.String)">
+            <summary>
+            Carries finalize wo payload input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.SingleWoPostingInputDto">
+            <summary>
+            Carries single wo posting input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.SingleWoPostingInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries single wo posting input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.WorkOrderStatusUpdateInputDto">
+            <summary>
+            Carries work order status update input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.WorkOrderStatusUpdateInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries work order status update input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.InvoiceAttributesSyncInputDto">
+            <summary>
+            Carries invoice attributes synchronization input dto data (best-effort enrichment/update).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.InvoiceAttributesSyncInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries invoice attributes synchronization input dto data (best-effort enrichment/update).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.InvoiceAttributesSyncResultDto">
+            <summary>
+            Outcome for invoice attributes sync.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.InvoiceAttributesSyncResultDto.#ctor(System.Boolean,System.Boolean,System.Int32,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Outcome for invoice attributes sync.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RunOutcomeDto">
+            <summary>
+            Carries run outcome dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RunOutcomeDto.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            Carries run outcome dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.RunOutcomeDto.Success(System.String,System.String)">
+            <summary>
+            Executes success.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.DurableAccrualOrchestration.IsAdHocAllTrigger(System.String)">
+            <summary>
+            Retries posting for retryable-only groups returned by validation/posting.
+            Retries are executed per journal type and only for the retryable subset payload.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsOrchestration">
+            <summary>
+            Durable orchestrations for job operations (Post / Customer Change).
+            These orchestrations intentionally reuse the existing "Fetch from FSA -> optional delta -> validate/post" pipeline,
+            then execute operation-specific FSCM project lifecycle steps.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.IJobOperationsHttpUseCase">
+            <summary>
+            Function-layer use case for job operation HTTP endpoints.
+            Keeps Function adapters thin and enables substitutable implementations.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsHttpHandlerCommon">
+            <summary>
+            Backward-compatible facade for the previous shared job operations handler.
+            The SOLID refactor moves endpoint logic into endpoint-specific use cases.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocBatchAllJobsFunction">
+            <summary>
+            Thin HTTP adapter for AdHocBatch_AllJobs. Delegates to JobOperationsHttpHandlerCommon.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocBatchSingleJobFunction">
+            <summary>
+            Thin HTTP adapter for AdHocBatch_SingleJob. Delegates to JobOperationsHttpHandlerCommon.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CancelJobFunction">
+            <summary>
+            Thin HTTP adapter for CancelJob. Delegates to JobOperationsHttpHandlerCommon.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CustomerChangeFunction">
+            <summary>
+            Thin HTTP adapter for CustomerChange. Delegates to JobOperationsHttpHandlerCommon.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.PostJobFunction">
+            <summary>
+            Thin HTTP adapter for PostJob. Delegates to JobOperationsHttpHandlerCommon.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction">
+            <summary>
+            Provides sub project function behavior.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.SubProjectEnvelope">
+            <summary>
+            Carries sub project envelope data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.SubProjectEnvelope.#ctor(Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest)">
+            <summary>
+            Carries sub project envelope data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.LegacySubProjectRequest">
+            <summary>
+            Carries legacy sub project request data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.LegacySubProjectRequest.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries legacy sub project request data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.Sha256Hex(System.String)">
+            <summary>
+            Executes sha 256 hex.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.SubProjectFunction.PayloadInfo(System.String)">
+            <summary>
+            Executes payload info.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocAllAcceptedResponse">
+            <summary>
+            Submit acknowledgement contract for AdHoc batch-all requests.
+            Keeps the HTTP layer explicit while the bulk run continues asynchronously.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocAllAcceptedResponse.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Submit acknowledgement contract for AdHoc batch-all requests.
+            Keeps the HTTP layer explicit while the bulk run continues asynchronously.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocAllJobsUseCase">
+            <summary>
+            AdHoc Batch - All Jobs use case.
+            Fully extracted (no shared endpoint handler dependency).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.AdHocSingleJobUseCase">
+            <summary>
+            AdHoc Batch - Single Job use case.
+            Fully extracted (no shared endpoint handler dependency).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CancelJobUseCase">
+            <summary>
+            Cancel Job use case.
+            Fully extracted (no shared endpoint handler dependency).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.CustomerChangeUseCase">
+            <summary>
+            Customer Change use case.
+            Fully extracted (no shared endpoint handler dependency).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.IAdHocAllJobsUseCase">
+            <summary>
+            Use case for AdHoc Batch - All Jobs (durable schedule).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.IAdHocSingleJobUseCase">
+            <summary>
+            Use case for AdHoc Batch - Single Job.
+            Keeps Function adapters thin and improves ISP/DIP.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.ICancelJobUseCase">
+            <summary>
+            Use case for Job Cancel (sync).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.ICustomerChangeUseCase">
+            <summary>
+            Use case for Customer Change (sync).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.IPostJobUseCase">
+            <summary>
+            Use case for Job Post (sync).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsUseCaseBase">
+            <summary>
+            Shared helpers for JobOperations HTTP use cases.
+            Keeps endpoint adapters/use cases SOLID while preserving existing behavior.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.JobOperationsUseCaseBase.TryExtractCompanyAndSubProjectIdString(System.String,Microsoft.Extensions.Logging.ILogger,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Extract Company and SubProjectId from an FSCM WO payload JSON, logging failures but never throwing.
+            This overload matches existing call-sites in Cancel/Post/AdHoc use cases.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.PostJobUseCase">
+            <summary>
+            Post Job use case.
+            Fully extracted (no shared endpoint handler dependency).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.Functions.WarmupReadUseCase">
+            <summary>
+            Generic (no business IDs) warm-up endpoint to prime Dataverse + FSCM auth/TLS/DNS/HttpClient pipelines.
+            Intentionally uses small GET/HEAD probes and avoids executing any business operations.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.WorkerExtensionStartupCodeExecutor.Configure(Microsoft.Azure.Functions.Worker.IFunctionsWorkerApplicationBuilder)">
+            <summary>
+            Configures the worker to register extension startup services.
+            </summary>
+            <param name="applicationBuilder">The <see cref="T:Microsoft.Azure.Functions.Worker.IFunctionsWorkerApplicationBuilder"/> to configure.</param>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.DirectFunctionExecutor.ExecuteAsync(Microsoft.Azure.Functions.Worker.FunctionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionExecutorHostBuilderExtensions">
+            <summary>
+            Extension methods to enable registration of the custom <see cref="T:Microsoft.Azure.Functions.Worker.Invocation.IFunctionExecutor"/> implementation generated for the current worker.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionExecutorHostBuilderExtensions.ConfigureGeneratedFunctionExecutor(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+             Configures an optimized function executor to the invocation pipeline.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionExecutorAutoStartup">
+            <summary>
+            Auto startup class to register the custom <see cref="T:Microsoft.Azure.Functions.Worker.Invocation.IFunctionExecutor"/> implementation generated for the current worker.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionExecutorAutoStartup.Configure(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            Configures the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to use the custom <see cref="T:Microsoft.Azure.Functions.Worker.Invocation.IFunctionExecutor"/> implementation generated for the current worker.
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance to use for service registration.</param>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.GeneratedFunctionMetadataProvider">
+            <summary>
+            Custom <see cref="T:Microsoft.Azure.Functions.Worker.Core.FunctionMetadata.IFunctionMetadataProvider"/> implementation that returns function metadata definitions for the current worker.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.GeneratedFunctionMetadataProvider.GetFunctionMetadataAsync(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.WorkerHostBuilderFunctionMetadataProviderExtension">
+            <summary>
+            Extension methods to enable registration of the custom <see cref="T:Microsoft.Azure.Functions.Worker.Core.FunctionMetadata.IFunctionMetadataProvider"/> implementation generated for the current worker.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.WorkerHostBuilderFunctionMetadataProviderExtension.ConfigureGeneratedFunctionMetadataProvider(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+             Adds the GeneratedFunctionMetadataProvider to the service collection.
+             During initialization, the worker will return generated function metadata instead of relying on the Azure Functions host for function indexing.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionMetadataProviderAutoStartup">
+            <summary>
+            Auto startup class to register the custom <see cref="T:Microsoft.Azure.Functions.Worker.Core.FunctionMetadata.IFunctionMetadataProvider"/> implementation generated for the current worker.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Functions.FunctionMetadataProviderAutoStartup.Configure(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            Configures the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to use the custom <see cref="T:Microsoft.Azure.Functions.Worker.Core.FunctionMetadata.IFunctionMetadataProvider"/> implementation generated for the current worker.
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance to use for service registration.</param>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ValidationFailureRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ValidationFailureRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+    </members>
+</doc>
