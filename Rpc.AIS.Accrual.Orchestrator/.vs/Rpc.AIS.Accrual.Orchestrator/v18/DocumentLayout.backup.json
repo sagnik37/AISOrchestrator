@@ -1,0 +1,1073 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocsinglejobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocsinglejobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\adhocbatchsinglejobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\adhocbatchsinglejobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmreleaseddistinctproductshttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmreleaseddistinctproductshttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournalpolicies\\itemjournalfetchpolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournalpolicies\\itemjournalfetchpolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournalpolicies\\expensejournalfetchpolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournalpolicies\\expensejournalfetchpolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.reversal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.reversal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournallinerowmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmjournallinerowmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\journals\\policies\\journalpolicies\\expensejournaltypepolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\journals\\policies\\journalpolicies\\expensejournaltypepolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltapayloadbuilder.journals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltapayloadbuilder.journals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\services\\mappers\\fsaproductlinemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\services\\mappers\\fsaproductlinemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\services\\mappers\\fsadeltapayloadjsonhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\services\\mappers\\fsadeltapayloadjsonhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\posting\\ifscmjournalposter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\posting\\ifscmjournalposter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\wodeltapayloadservice.build.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\wodeltapayloadservice.build.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\wodeltapayloadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\wodeltapayloadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.lineresolution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.lineresolution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltamathengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltamathengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\usecases\\fsadeltapayloadusecase.singleanystatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\usecases\\fsadeltapayloadusecase.singleanystatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C79873A4-CF1A-4BF3-BF9E-CB9CD76F8963}|tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Rpc.AIS.Accrual.Orchestrator.Tests.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\tests\\rpc.ais.accrual.orchestrator.tests\\functions\\httpendpointscontracttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C79873A4-CF1A-4BF3-BF9E-CB9CD76F8963}|tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Rpc.AIS.Accrual.Orchestrator.Tests.csproj|solutionrelative:tests\\rpc.ais.accrual.orchestrator.tests\\functions\\httpendpointscontracttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\joboperationsusecasebase.httpresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\joboperationsusecasebase.httpresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\customerchangeusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\customerchangeusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\postjobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\postjobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\canceljobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\canceljobusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\joboperationsusecasebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\joboperationsusecasebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocalljobsusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocalljobsusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\durableaccrualorchestration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\durableaccrualorchestration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\adhocbatchalljobsfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\adhocbatchalljobsfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocallacceptedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\adhocallacceptedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\wodeltapayload\\wodeltapayload\\wodeltapayloadtelemetryshaper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\wodeltapayload\\wodeltapayload\\wodeltapayloadtelemetryshaper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\shared\\utilities\\aisloggerpayloadextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\shared\\utilities\\aisloggerpayloadextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\journals\\policies\\journalpolicies\\itemjournaltypepolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\journals\\policies\\journalpolicies\\itemjournaltypepolicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\cachedfscmreleaseddistinctproductsclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\cachedfscmreleaseddistinctproductsclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\local.settings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\local.settings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\usecases\\fsadeltapayloadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\fsadeltapayload\\usecases\\fsadeltapayloadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\warmupreadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\warmupreadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\options\\warmupoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\options\\warmupoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\warmupreadfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\warmupreadfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\iwarmupreadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\usecases\\iwarmupreadusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.linemutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltajournalsectionbuilder.linemutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\invoiceattributes\\services\\invoiceattributes\\runtimeinvoiceattributemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\invoiceattributes\\services\\invoiceattributes\\runtimeinvoiceattributemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\invoiceattributes\\services\\invoiceattributes\\invoiceattributedeltabuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\invoiceattributes\\services\\invoiceattributes\\invoiceattributedeltabuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\subprojectprovisioningservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\deprecated\\services\\subprojectprovisioningservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\postinghttpclient.facade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\postinghttpclient.facade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\composition\\documentattachmentcopyrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\composition\\documentattachmentcopyrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fsworkorderattachmenthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fsworkorderattachmenthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltaedgecaserules.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltaedgecaserules.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltacalculationengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.domain\\domain\\delta\\deltacalculationengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltapayloadbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\delta\\services\\deltapayloadbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\customerchangeorchestrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\customerchangeorchestrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\subprojectfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\subprojectfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.domain\\domain\\subprojectmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA128E22-0DFD-4B3F-A505-8915E3408D4F}|src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Rpc.AIS.Accrual.Orchestrator.Domain.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.domain\\domain\\subprojectmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmsubprojecthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmsubprojecthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\canceljobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\canceljobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\postjobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\postjobfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\validation\\services\\validation\\fscmendpointrequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\validation\\services\\validation\\fscmendpointrequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmprojectstatushttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmprojectstatushttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmdocuattachmentshttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fscmdocuattachmentshttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\dependencyinjection\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\dependencyinjection\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fsalinefetcherworkflow.taxabilityenrichment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A12B27BE-FE08-42CD-9B9A-5D5125B19464}|src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Rpc.AIS.Accrual.Orchestrator.Infrastructure.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.infrastructure\\adapters\\fscm\\clients\\fsalinefetcherworkflow.taxabilityenrichment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.application\\features\\validation\\services\\wopayloadvalidationpipeline\\wolocalvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD0ADA9D-685F-4286-A5C8-204A50290789}|src\\Rpc.AIS.Accrual.Orchestrator.Application\\Rpc.AIS.Accrual.Orchestrator.Application.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.application\\features\\validation\\services\\wopayloadvalidationpipeline\\wolocalvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\customerchangefunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\endpoints\\split\\customerchangefunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\joboperationsorchestration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\durable\\orchestrators\\joboperationsorchestration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|c:\\rpc\\codebase\\featurebranches\\refactor_codebase\\rpc.ais.accrual.orchestrator\\src\\rpc.ais.accrual.orchestrator.functions\\rpc.ais.accrual.orchestrator.functions.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CC7EBCE4-23DF-4EF1-87DA-AB3B7DCE788D}|src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj|solutionrelative:src\\rpc.ais.accrual.orchestrator.functions\\rpc.ais.accrual.orchestrator.functions.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FscmJournalLineRowMapper.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalLineRowMapper.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalLineRowMapper.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalLineRowMapper.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalLineRowMapper.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAIAwwLMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T19:38:44.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ItemJournalFetchPolicy.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ItemJournalFetchPolicy.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ItemJournalFetchPolicy.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ItemJournalFetchPolicy.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ItemJournalFetchPolicy.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAADwvxkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T15:01:28.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExpenseJournalFetchPolicy.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ExpenseJournalFetchPolicy.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ExpenseJournalFetchPolicy.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ExpenseJournalFetchPolicy.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmJournalPolicies\\ExpenseJournalFetchPolicy.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADgvxkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T15:00:51.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FscmReleasedDistinctProductsHttpClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmReleasedDistinctProductsHttpClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmReleasedDistinctProductsHttpClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmReleasedDistinctProductsHttpClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmReleasedDistinctProductsHttpClient.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAwwMAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T20:01:37.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdHocBatchSingleJobFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchSingleJobFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchSingleJobFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchSingleJobFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchSingleJobFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T07:37:52.387Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdHocSingleJobUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocSingleJobUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocSingleJobUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocSingleJobUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocSingleJobUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T20:43:29.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ExpenseJournalTypePolicy.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ExpenseJournalTypePolicy.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ExpenseJournalTypePolicy.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ExpenseJournalTypePolicy.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ExpenseJournalTypePolicy.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T20:14:06.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DeltaJournalSectionBuilder.Reversal.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Reversal.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Reversal.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Reversal.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Reversal.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAApwDsAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T14:05:58.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DeltaPayloadBuilder.Journals.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.Journals.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.Journals.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.Journals.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.Journals.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAApwFUAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:40:29.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FsaProductLineMapper.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaProductLineMapper.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaProductLineMapper.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaProductLineMapper.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaProductLineMapper.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAFMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T03:25:45.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FsaDeltaPayloadJsonHelpers.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaDeltaPayloadJsonHelpers.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaDeltaPayloadJsonHelpers.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaDeltaPayloadJsonHelpers.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\Services\\Mappers\\FsaDeltaPayloadJsonHelpers.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAqwIMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T03:25:24.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DeltaJournalSectionBuilder.LineResolution.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineResolution.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineResolution.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineResolution.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineResolution.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAowIkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:33:22.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IFscmJournalPoster.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\Posting\\IFscmJournalPoster.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\Posting\\IFscmJournalPoster.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\Posting\\IFscmJournalPoster.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\Posting\\IFscmJournalPoster.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAmwHsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T14:24:30.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WoDeltaPayloadService.Build.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.Build.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.Build.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.Build.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.Build.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAQwFoBAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:42:59.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "WoDeltaPayloadService.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\WoDeltaPayloadService.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAQwFcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T18:17:52.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DeltaJournalSectionBuilder.Helpers.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Helpers.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Helpers.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Helpers.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.Helpers.cs",
+              "ViewState": "AgIAAC8BAAAAAAAAAAAwwDQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:33:10.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DeltaMathEngine.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaMathEngine.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaMathEngine.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaMathEngine.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaMathEngine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:33:28.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "JobOperationsUseCaseBase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAnwB8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T04:54:57.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DeltaJournalSectionBuilder.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAIAwwFYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T14:12:19.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FsaDeltaPayloadUseCase.SingleAnyStatus.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.SingleAnyStatus.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.SingleAnyStatus.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.SingleAnyStatus.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.SingleAnyStatus.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T21:05:18.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "JobOperationsUseCaseBase.HttpResponses.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.HttpResponses.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.HttpResponses.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.HttpResponses.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\JobOperationsUseCaseBase.HttpResponses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T18:02:07.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CancelJobUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CancelJobUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CancelJobUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CancelJobUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CancelJobUseCase.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAqwBcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T16:53:57.452Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PostJobUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\PostJobUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\PostJobUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\PostJobUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\PostJobUseCase.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAqwBgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T10:48:11.811Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "HttpEndpointsContractTests.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Functions\\HttpEndpointsContractTests.cs",
+              "RelativeDocumentMoniker": "tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Functions\\HttpEndpointsContractTests.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Functions\\HttpEndpointsContractTests.cs",
+              "RelativeToolTip": "tests\\Rpc.AIS.Accrual.Orchestrator.Tests\\Functions\\HttpEndpointsContractTests.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAwwPAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T04:57:05.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AdHocAllJobsUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllJobsUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllJobsUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllJobsUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllJobsUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T04:54:50.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CustomerChangeUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CustomerChangeUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CustomerChangeUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CustomerChangeUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\CustomerChangeUseCase.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAqwBUAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:03:33.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "DurableAccrualOrchestration.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\DurableAccrualOrchestration.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\DurableAccrualOrchestration.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\DurableAccrualOrchestration.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\DurableAccrualOrchestration.cs",
+              "ViewState": "AgIAACkBAAAAAAAAAAAwwD4BAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T17:57:33.102Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "AdHocBatchAllJobsFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchAllJobsFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchAllJobsFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchAllJobsFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\AdHocBatchAllJobsFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T17:37:51.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AdHocAllAcceptedResponse.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllAcceptedResponse.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllAcceptedResponse.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllAcceptedResponse.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\AdHocAllAcceptedResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T17:56:16.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "WoDeltaPayloadTelemetryShaper.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\WoDeltaPayload\\WoDeltaPayload\\WoDeltaPayloadTelemetryShaper.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\WoDeltaPayload\\WoDeltaPayload\\WoDeltaPayloadTelemetryShaper.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\WoDeltaPayload\\WoDeltaPayload\\WoDeltaPayloadTelemetryShaper.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\WoDeltaPayload\\WoDeltaPayload\\WoDeltaPayloadTelemetryShaper.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAwwIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:11:48.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AisLoggerPayloadExtensions.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Shared\\Utilities\\AisLoggerPayloadExtensions.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Shared\\Utilities\\AisLoggerPayloadExtensions.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Shared\\Utilities\\AisLoggerPayloadExtensions.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Shared\\Utilities\\AisLoggerPayloadExtensions.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAwwH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:12:55.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "CachedFscmReleasedDistinctProductsClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\CachedFscmReleasedDistinctProductsClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\CachedFscmReleasedDistinctProductsClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\CachedFscmReleasedDistinctProductsClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\CachedFscmReleasedDistinctProductsClient.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAQwK8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T19:42:20.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ItemJournalTypePolicy.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ItemJournalTypePolicy.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ItemJournalTypePolicy.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ItemJournalTypePolicy.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Journals\\Policies\\JournalPolicies\\ItemJournalTypePolicy.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T20:15:00.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "local.settings.json",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\local.settings.json",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\local.settings.json",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\local.settings.json",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\local.settings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-12T16:32:27.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "FsaDeltaPayloadUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\FsaDeltaPayload\\UseCases\\FsaDeltaPayloadUseCase.cs",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAAALQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T07:20:38.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "WarmupReadUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\WarmupReadUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\WarmupReadUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\WarmupReadUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\WarmupReadUseCase.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAwwKgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T10:11:19.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IWarmupReadUseCase.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\IWarmupReadUseCase.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\IWarmupReadUseCase.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\IWarmupReadUseCase.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\UseCases\\IWarmupReadUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T13:12:59.922Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "DeltaJournalSectionBuilder.LineMutation.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineMutation.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineMutation.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineMutation.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaJournalSectionBuilder.LineMutation.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwOoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T06:02:05.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "RuntimeInvoiceAttributeMapper.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\RuntimeInvoiceAttributeMapper.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\RuntimeInvoiceAttributeMapper.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\RuntimeInvoiceAttributeMapper.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\RuntimeInvoiceAttributeMapper.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T07:16:39.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "WarmupReadFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\WarmupReadFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\WarmupReadFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\WarmupReadFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\WarmupReadFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T10:55:22.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "WarmupOptions.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Options\\WarmupOptions.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Options\\WarmupOptions.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Options\\WarmupOptions.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Options\\WarmupOptions.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T13:13:47.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "InvoiceAttributeDeltaBuilder.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\InvoiceAttributeDeltaBuilder.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\InvoiceAttributeDeltaBuilder.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\InvoiceAttributeDeltaBuilder.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\InvoiceAttributes\\Services\\InvoiceAttributes\\InvoiceAttributeDeltaBuilder.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T07:16:49.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "PostingHttpClient.Facade.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\PostingHttpClient.Facade.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\PostingHttpClient.Facade.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\PostingHttpClient.Facade.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\PostingHttpClient.Facade.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAIAwwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T15:59:04.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "SubProjectProvisioningService.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\SubProjectProvisioningService.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\SubProjectProvisioningService.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\SubProjectProvisioningService.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Deprecated\\Services\\SubProjectProvisioningService.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAwwKAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T07:21:57.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "DeltaEdgeCaseRules.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaEdgeCaseRules.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaEdgeCaseRules.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaEdgeCaseRules.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaEdgeCaseRules.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAQwKkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T14:01:02.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "DocumentAttachmentCopyRunner.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Composition\\DocumentAttachmentCopyRunner.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Composition\\DocumentAttachmentCopyRunner.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Composition\\DocumentAttachmentCopyRunner.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Composition\\DocumentAttachmentCopyRunner.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAwwF4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T13:13:00.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "FsWorkOrderAttachmentHttpClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsWorkOrderAttachmentHttpClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsWorkOrderAttachmentHttpClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsWorkOrderAttachmentHttpClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsWorkOrderAttachmentHttpClient.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAowOIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T08:17:27.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "DeltaCalculationEngine.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaCalculationEngine.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaCalculationEngine.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaCalculationEngine.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\Delta\\DeltaCalculationEngine.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T14:00:57.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "DeltaPayloadBuilder.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Delta\\Services\\DeltaPayloadBuilder.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAqwJkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T14:54:03.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "CustomerChangeOrchestrator.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\CustomerChangeOrchestrator.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\CustomerChangeOrchestrator.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\CustomerChangeOrchestrator.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\CustomerChangeOrchestrator.cs",
+              "ViewState": "AgIAADkBAAAAAAAAAAAvwFYBAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:03:57.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "SubProjectModels.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\SubProjectModels.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\SubProjectModels.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\SubProjectModels.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Domain\\Domain\\SubProjectModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T18:57:00.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "PostJobFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\PostJobFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\PostJobFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\PostJobFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\PostJobFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:10:04.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "FscmSubProjectHttpClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmSubProjectHttpClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmSubProjectHttpClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmSubProjectHttpClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmSubProjectHttpClient.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAhwDMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T07:21:57.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "CancelJobFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CancelJobFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CancelJobFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CancelJobFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CancelJobFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:10:20.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "SubProjectFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\SubProjectFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\SubProjectFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\SubProjectFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\SubProjectFunction.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAwwC8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T07:21:56.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "FscmEndpointRequestValidator.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\Validation\\FscmEndpointRequestValidator.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\Validation\\FscmEndpointRequestValidator.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\Validation\\FscmEndpointRequestValidator.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\Validation\\FscmEndpointRequestValidator.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAwwEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T18:53:41.282Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "FscmDocuAttachmentsHttpClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmDocuAttachmentsHttpClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmDocuAttachmentsHttpClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmDocuAttachmentsHttpClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmDocuAttachmentsHttpClient.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAMwEYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T15:30:18.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "FscmProjectStatusHttpClient.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmProjectStatusHttpClient.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmProjectStatusHttpClient.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmProjectStatusHttpClient.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FscmProjectStatusHttpClient.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAnwF0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T15:48:07.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ServiceCollectionExtensions.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\DependencyInjection\\ServiceCollectionExtensions.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\DependencyInjection\\ServiceCollectionExtensions.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\DependencyInjection\\ServiceCollectionExtensions.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\DependencyInjection\\ServiceCollectionExtensions.cs",
+              "ViewState": "AgIAAGsBAAAAAAAAAAAewIQBAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T10:29:06.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "WoLocalValidator.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\WoPayloadValidationPipeline\\WoLocalValidator.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\WoPayloadValidationPipeline\\WoLocalValidator.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\WoPayloadValidationPipeline\\WoLocalValidator.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Application\\Features\\Validation\\Services\\WoPayloadValidationPipeline\\WoLocalValidator.cs",
+              "ViewState": "AgIAAI0BAAAAAAAAAAAAAKgBAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T16:27:07.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Program.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Program.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Program.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T08:54:45.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "FsaLineFetcherWorkflow.TaxabilityEnrichment.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsaLineFetcherWorkflow.TaxabilityEnrichment.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsaLineFetcherWorkflow.TaxabilityEnrichment.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsaLineFetcherWorkflow.TaxabilityEnrichment.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Infrastructure\\Adapters\\Fscm\\Clients\\FsaLineFetcherWorkflow.TaxabilityEnrichment.cs",
+              "ViewState": "AgIAANQAAAAAAAAAAAAgwPoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T18:14:05.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "CustomerChangeFunction.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CustomerChangeFunction.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CustomerChangeFunction.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CustomerChangeFunction.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Endpoints\\Split\\CustomerChangeFunction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:10:11.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "JobOperationsOrchestration.cs",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\JobOperationsOrchestration.cs",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\JobOperationsOrchestration.cs",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\JobOperationsOrchestration.cs",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Durable\\Orchestrators\\JobOperationsOrchestration.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:09:12.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Rpc.AIS.Accrual.Orchestrator.Functions.csproj",
+              "DocumentMoniker": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj",
+              "RelativeDocumentMoniker": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj",
+              "ToolTip": "C:\\RPC\\codebase\\featurebranches\\refactor_codebase\\Rpc.AIS.Accrual.Orchestrator\\src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj",
+              "RelativeToolTip": "src\\Rpc.AIS.Accrual.Orchestrator.Functions\\Rpc.AIS.Accrual.Orchestrator.Functions.csproj",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAiwD0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-08T08:19:51.007Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

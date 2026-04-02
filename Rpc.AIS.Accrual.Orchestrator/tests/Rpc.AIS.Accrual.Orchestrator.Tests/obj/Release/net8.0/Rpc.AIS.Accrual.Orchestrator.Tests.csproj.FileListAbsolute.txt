@@ -1,0 +1,8 @@
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\bin\Release\net8.0\.msCoverageSourceRootsMapping_Rpc.AIS.Accrual.Orchestrator.Tests
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\bin\Release\net8.0\CoverletSourceRootsMapping_Rpc.AIS.Accrual.Orchestrator.Tests
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.csproj.AssemblyReference.cache
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.AssemblyInfoInputs.cache
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.AssemblyInfo.cs
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.csproj.CoreCompileInputs.cache
+C:\RPC\codebase\refactor5\Rpc.AIS.Accrual.Orchestrator\tests\Rpc.AIS.Accrual.Orchestrator.Tests\obj\Release\net8.0\Rpc.AIS.Accrual.Orchestrator.Tests.sourcelink.json

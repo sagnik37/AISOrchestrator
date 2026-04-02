@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rpc.AIS.Accrual.Orchestrator.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.AccrualStagingRef">
+            <summary>
+            Carries accrual staging ref data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.AccrualStagingRef.#ctor(System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.String)">
+            <summary>
+            Carries accrual staging ref data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.AisConstants">
+            <summary>
+            Centralizes magic numbers/strings used across AIS payload generation and FSCM interactions.
+            Keep values stable to avoid breaking external contracts.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.AisConstants.Delta.PriceComparisonTolerance">
+            <summary>
+            Tolerance used for price comparisons in delta calculation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmProjectStatus">
+            <summary>
+            FSCM Project status codes used by AIS when updating subprojects.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.AccountingPeriodSnapshot">
+            <summary>
+            Represents the accounting period context required for reversal dating rules.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.AccountingPeriodSnapshot.#ctor(System.DateTime,System.String,System.DateTime,System.DateTime,System.Func{System.DateTime,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{System.Boolean}},System.Func{System.DateTime,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{System.DateTime}})">
+            <summary>
+            Represents the accounting period context required for reversal dating rules.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaCalculationResult">
+            <summary>
+            Carries delta calculation result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaCalculationResult.#ctor(System.Guid,System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaDecision,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaPlannedLine},System.String)">
+            <summary>
+            Carries delta calculation result data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaDecision">
+            <summary>
+            Defines delta decision values.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaDecision.QuantityDelta">
+            <summary>Quantity-only delta line.</summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaDecision.ReverseAndRecreate">
+            <summary>Reverse all history, then add a positive line with updated attributes.</summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaDecision.ReverseOnly">
+            <summary>Reverse all history only (inactive scenario).</summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaPlannedLine">
+            <summary>
+            Normalized planned journal line produced by delta engine.
+            Later,  payload builder maps this into WOItemLines / WOExpLines / WOHourLines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaPlannedLine.#ctor(System.DateTime,System.Decimal,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot)">
+            <summary>
+            Normalized planned journal line produced by delta engine.
+            Later,  payload builder maps this into WOItemLines / WOExpLines / WOHourLines.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.DeltaEdgeCaseRules.RequiresReversalDueToFieldChange(Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FsaWorkOrderLineSnapshot,Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmWorkOrderLineAggregation)">
+             <summary>
+             Returns true ONLY when one of the 5 “reversal-trigger” fields changed:
+             Department, ProductLine, Warehouse, LineProperty, CalculatedUnitPrice.
+            
+             Intent-2: Price drift counts ONLY when explicitly supplied by FSA (UnitPriceProvided == true).
+             Mixed FSCM history alone is NOT a reason to reverse.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FsaWorkOrderLineSnapshot">
+            <summary>
+            Canonical snapshot of the FSA WorkOrder line for delta evaluation.
+            Only includes fields relevant to delta + reversal logic.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FsaWorkOrderLineSnapshot.#ctor(System.Guid,System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Boolean,System.Decimal,System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Canonical snapshot of the FSA WorkOrder line for delta evaluation.
+            Only includes fields relevant to delta + reversal logic.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket">
+            <summary>
+            Represents FSCM journal lines for a WorkOrder line grouped by a specific transaction date (date-only).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket.#ctor(System.Nullable{System.DateTime},System.Decimal,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine})">
+            <summary>
+            Represents FSCM journal lines for a WorkOrder line grouped by a specific transaction date (date-only).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmJournalAggregator">
+            <summary>
+            Aggregates FSCM journal lines fetched for a whole WorkOrder into per WorkOrderLine aggregations.
+            The output is consumed by delta calculation and reversal planning.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmJournalAggregator.GroupByWorkOrderLine(System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine})">
+             <summary>
+             Groups FSCM journal lines by WorkOrderLineId and produces an aggregation per line.
+            
+             Dimension grouping rules:
+             - Warehouse is considered ONLY for Item journals.
+             - Warehouse is ignored for Expense / Hour journals.
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmJournalAggregator.BuildSignature(Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType)">
+             <summary>
+             Builds a dimension signature string for reversal-triggering attributes.
+            
+             Warehouse is included ONLY for Item journals.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmJournalLineAggExtensions">
+            <summary>
+            FSCM journal line aggregation extensions.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDimensionBucket">
+             <summary>
+             Second-level aggregation bucket for FSCM journal history.
+            
+             Keyed by reversal-triggering attributes (warehouse  excluded):
+             - rpc_department
+             - rpc_productline
+             - msdyn_lineproperty
+             - rpc_calculatedunitprice
+            
+             This enables deterministic inspection / audit of FSCM history when the above attributes changed.
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDimensionBucket.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Decimal},System.Decimal,System.Nullable{System.Decimal},System.Collections.Generic.IReadOnlyList{System.Nullable{System.DateTime}})">
+             <summary>
+             Second-level aggregation bucket for FSCM journal history.
+            
+             Keyed by reversal-triggering attributes (warehouse  excluded):
+             - rpc_department
+             - rpc_productline
+             - msdyn_lineproperty
+             - rpc_calculatedunitprice
+            
+             This enables deterministic inspection / audit of FSCM history when the above attributes changed.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmReversalProfile">
+            <summary>
+            Reversal-safe FSCM history profile for a single effective attribute signature.
+            This allows AIS to reverse mixed Bill/NonBill (and similar) history without collapsing it
+            into a single representative line that would leave residual quantities behind.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmReversalProfile.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Decimal},System.Decimal,System.Nullable{System.Decimal},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket},Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot)">
+            <summary>
+            Reversal-safe FSCM history profile for a single effective attribute signature.
+            This allows AIS to reverse mixed Bill/NonBill (and similar) history without collapsing it
+            into a single representative line that would leave residual quantities behind.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmWorkOrderLineAggregation">
+            <summary>
+            Aggregated view of FSCM journals for a single WorkOrder line (grouped by WorkOrderLineId).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmWorkOrderLineAggregation.#ctor(System.Guid,System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Decimal,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDimensionBucket},Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmReversalProfile})">
+            <summary>
+            Aggregated view of FSCM journals for a single WorkOrder line (grouped by WorkOrderLineId).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmWorkOrderLineAggregation.#ctor(System.Guid,System.Guid,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Decimal,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket})">
+            <summary>
+            Backwards-compatible constructor for call sites that haven't been updated yet.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.JournalReversalPlanner">
+            <summary>
+            Plans reversal journal lines based on existing FSCM journal history for a WorkOrder line.
+            Implements closed/open period splitting rules:
+            - If journals exist in closed period(s), reversal for those quantities must be created
+              as a separate line dated at the 1st day of the current open period.
+            - Remaining open-period journals can be reversed normally (dated "today" or caller-chosen date).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.JournalReversalPlanner.PlanFullReversalAsync(System.Guid,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket},Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.AccountingPeriodSnapshot,System.DateTime,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Plans reversals for ALL quantities previously journaled in FSCM for the given WorkOrder line.
+            Caller decides later whether to also add a positive line (e.g., dimension/lineproperty/price change),
+            or only reverse (inactive scenario).
+            </summary>
+            <param name="workOrderLineId">WO line GUID.</param>
+            <param name="dateBuckets">Aggregated buckets by transaction date (may include null dates).</param>
+            <param name="period">Period snapshot with open-period start date and closed-period classifier.</param>
+            <param name="openPeriodReversalDate">Date to use for reversing journals from OPEN period(s) (typically "today").</param>
+            <param name="reason">Reason string for telemetry/audit.</param>
+            <param name="ct">Cancellation token.</param>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.JournalReversalPlanner.PlanFilteredReversalAsync(System.Guid,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.FscmDateBucket},Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.AccountingPeriodSnapshot,System.DateTime,System.String,System.Func{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Convenience: plan reversal only for journals that match a predicate (e.g., only old dimension signature),
+            while leaving other history untouched.
+            This is useful if later  decide to reverse only "old signature" lines vs entire history.
+            For  current spec, FULL reversal is used on any dimension/lineproperty/price change.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.ReversalPlan">
+            <summary>
+            Result produced by JournalReversalPlanner.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.ReversalPlan.#ctor(System.Guid,System.Decimal,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.PlannedReversal})">
+            <summary>
+            Result produced by JournalReversalPlanner.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.PlannedReversal">
+            <summary>
+            Carries planned reversal data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.PlannedReversal.#ctor(System.DateTime,System.Decimal,System.Boolean,System.String)">
+            <summary>
+            Carries planned reversal data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Delta.ReversalProfilePlanner">
+            <summary>
+            Plans reversal lines at FSCM signature level so mixed Bill/NonBill history is reversed precisely.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadInputDto">
+            <summary>
+            Carries get fsa delta payload input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries get fsa delta payload input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadResultDto">
+            <summary>
+            Carries get fsa delta payload result dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.GetFsaDeltaPayloadResultDto.#ctor(System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String})">
+            <summary>
+            Carries get fsa delta payload result dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.BuildDeltaPayloadFromFscmHistoryInputDto">
+            <summary>
+            Carries build delta payload from fscm history input dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.BuildDeltaPayloadFromFscmHistoryInputDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries build delta payload from fscm history input dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.BuildDeltaPayloadFromFscmHistoryResultDto">
+            <summary>
+            Carries build delta payload from fscm history result dto data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.BuildDeltaPayloadFromFscmHistoryResultDto.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Carries build delta payload from fscm history result dto data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaDeltaSnapshot">
+            <summary>
+            Carries fsa delta snapshot data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaDeltaSnapshot.#ctor(System.String,System.Guid,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaProductLine},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaProductLine},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaServiceLine},Rpc.AIS.Accrual.Orchestrator.Core.Domain.WoHeaderMappingFields)">
+            <summary>
+            Carries fsa delta snapshot data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaProductLine">
+            <summary>
+            Carries fsa product line data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaProductLine.#ctor(System.Guid,System.Guid,System.String,System.Nullable{System.Guid},System.String,System.String,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.String,System.String,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Carries fsa product line data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaServiceLine">
+            <summary>
+            Carries fsa service line data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FsaServiceLine.#ctor(System.Guid,System.Guid,System.String,System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.String,System.String,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Decimal},System.String,System.String,System.String,System.Nullable{System.Boolean},System.String,System.Nullable{System.Boolean},System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Carries fsa service line data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmBaselineRecord">
+            <summary>
+            Carries fscm baseline record data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmBaselineRecord.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries fscm baseline record data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.DeltaComparisonResult">
+            <summary>
+            Carries delta comparison result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.DeltaComparisonResult.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Carries delta comparison result data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WoHeaderMappingFields">
+            <summary>
+            Mapping-only work order header fields fetched from Dataverse and injected into outbound payload.
+            Not used by delta calculation.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WoHeaderMappingFields.#ctor(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Mapping-only work order header fields fetched from Dataverse and injected into outbound payload.
+            Not used by delta calculation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmEndpointType">
+            <summary>
+            Represents the FSCM endpoint being invoked.
+            Used to drive endpoint-specific local validation rules.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine">
+            <summary>
+            Normalized FSCM journal line representation used by AIS delta logic.
+            The fetch client maps OData entity sets (Item/Expense/Hour) into this shape.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmJournalLine.#ctor(Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Guid,System.Guid,System.String,System.Decimal,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.String,System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot)">
+            <summary>
+            Normalized FSCM journal line representation used by AIS delta logic.
+            The fetch client maps OData entity sets (Item/Expense/Hour) into this shape.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot">
+            <summary>
+            FSCM-sourced payload snapshot used to build REVERSAL delta lines.
+            For reversal lines only, AIS must rely on FSCM values (not FSA).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.FscmReversalPayloadSnapshot.#ctor(System.Guid,System.String,System.String,System.Nullable{System.Decimal},System.String,System.String,System.String,System.String,System.Decimal,System.String,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Boolean},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            FSCM-sourced payload snapshot used to build REVERSAL delta lines.
+            For reversal lines only, AIS must rely on FSCM values (not FSA).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.InvoiceAttributes.InvoiceAttributeDefinition">
+            <summary>
+            Minimal attribute definition returned by FSCM "attribute table" endpoint.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.InvoiceAttributes.InvoiceAttributeDefinition.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Minimal attribute definition returned by FSCM "attribute table" endpoint.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.InvoiceAttributes.InvoiceAttributePair">
+            <summary>
+            Name/value pair contract used by FSCM custom endpoints.
+            AttributeName must be the FSCM attribute name.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.InvoiceAttributes.InvoiceAttributePair.#ctor(System.String,System.String)">
+            <summary>
+            Name/value pair contract used by FSCM custom endpoints.
+            AttributeName must be the FSCM attribute name.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType">
+            <summary>
+            Defines journal type values.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.LegalEntityJournalNames">
+            <summary>
+            Journal name identifiers configured per legal entity in FSCM.
+            Sourced from LegalEntityIntegrationParametersBaseIntParamTables.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.LegalEntityJournalNames.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Journal name identifiers configured per legal entity in FSCM.
+            Sourced from LegalEntityIntegrationParametersBaseIntParamTables.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult">
+            <summary>
+            Result of posting one journal group (typically per <see cref="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult.JournalType"/>).
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult.#ctor(Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Boolean,System.String,System.String,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError},System.Int32,System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Result of posting one journal group (typically per <see cref="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult.JournalType"/>).
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError">
+            <summary>
+            Carries post error data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostError.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Carries post error data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext">
+            <summary>
+            Carries run context data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext.#ctor(System.String,System.DateTimeOffset,System.String,System.String,System.String,System.String)">
+            <summary>
+            Carries run context data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunOutcome">
+             <summary>
+             Run summary for the accrual orchestration.
+            
+             WO-payload mode:
+             - WorkOrdersConsidered / WorkOrdersValid / WorkOrdersInvalid are the primary counters.
+             </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunOutcome.#ctor(Rpc.AIS.Accrual.Orchestrator.Core.Domain.RunContext,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.PostResult},System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.ValidationResult},System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Run summary for the accrual orchestration.
+            
+             WO-payload mode:
+             - WorkOrdersConsidered / WorkOrdersValid / WorkOrdersInvalid are the primary counters.
+             </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.StatusChangeRequest">
+            <summary>
+            Carries status change request data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.StatusChangeRequest.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Text.Json.Nodes.JsonNode)">
+            <summary>
+            Carries status change request data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.StatusChangeRequest`1">
+            <summary>
+            Strongly-typed variant for status-specific payloads.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.StatusChangeRequest`1.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,`0)">
+            <summary>
+            Strongly-typed variant for status-specific payloads.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest">
+            <summary>
+            Canonical request model for FSCM SubProject creation.
+            This model represents the inner object of the FSCM contract envelope: { "_request": { ... } }.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Canonical request model for FSCM SubProject creation.
+            This model represents the inner object of the FSCM contract envelope: { "_request": { ... } }.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest.WorkOrderId">
+            <summary>
+            Optional Work Order Id to be sent as 'WorkOrderId' into FSCM contract when present.
+            Used by subproject creation flows that previously overloaded ProjectName with the work order id.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest.WorkOrderGuid">
+            <summary>
+            Optional Work Order GUID (Field Service / Customer Change).
+            Serialized as 'WorkOrderGUID' into FSCM contract when present.
+            Prefer brace format "{GUID}".
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest.IsFsaProject">
+            <summary>
+            Optional FSCM create control flag. Serialized as 'IsFSAProject' when present.
+            </summary>
+        </member>
+        <member name="P:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateRequest.ProjectStatus">
+            <summary>
+            Optional FSCM create control. Serialized as 'ProjectStatus' when present.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateResult">
+            <summary>
+            Carries sub project create result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectCreateResult.#ctor(System.Boolean,System.String,System.String,System.Collections.Generic.IReadOnlyList{Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectError})">
+            <summary>
+            Carries sub project create result data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectError">
+            <summary>
+            Carries sub project error data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.SubProjectError.#ctor(System.String,System.String)">
+            <summary>
+            Carries sub project error data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.ValidationResult">
+            <summary>
+            Carries validation result data.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.ValidationResult.#ctor(Rpc.AIS.Accrual.Orchestrator.Core.Domain.AccrualStagingRef,System.Boolean,System.String,System.String)">
+            <summary>
+            Carries validation result data.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.FilteredWorkOrder">
+            <summary>
+            A work order JSON object with a resolved journal section key and the journal lines selected for posting.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.FilteredWorkOrder.#ctor(System.Text.Json.JsonElement,System.String,System.Collections.Generic.IReadOnlyList{System.Text.Json.JsonElement})">
+            <summary>
+            A work order JSON object with a resolved journal section key and the journal lines selected for posting.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition">
+            <summary>
+            Indicates how AIS should handle a validation issue.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.Valid">
+            <summary>
+            Record is valid and may be posted.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.Invalid">
+            <summary>
+            Record is invalid (data/contract issue) and should not be retried.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.Retryable">
+            <summary>
+            Record failed validation due to a transient dependency and may be retried.
+            </summary>
+        </member>
+        <member name="F:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition.FailFast">
+            <summary>
+            Validation cannot proceed due to a configuration or system issue; the run should stop.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationDefaults">
+            <summary>
+            Central place for safe default results for WO payload validation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationFailure">
+            <summary>
+            Represents a single record detected during AIS-side validation.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationFailure.#ctor(System.Guid,System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.JournalType,System.Nullable{System.Guid},System.String,System.String,Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.ValidationDisposition)">
+            <summary>
+            Represents a single record detected during AIS-side validation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.Validation.WoPayloadValidationResult">
+            <summary>
+            Outcome of AIS-side payload validation.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WorkOrderAttachment">
+            <summary>
+            A document attachment related to a Work Order in Field Service.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WorkOrderAttachment.#ctor(System.String,System.String,System.String)">
+            <summary>
+            A document attachment related to a Work Order in Field Service.
+            </summary>
+        </member>
+        <member name="T:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WorkOrderStatusUpdateResponse">
+            <summary>
+            Result of posting a work-order status update to FSCM.
+            </summary>
+        </member>
+        <member name="M:Rpc.AIS.Accrual.Orchestrator.Core.Domain.WorkOrderStatusUpdateResponse.#ctor(System.Boolean,System.Int32,System.String)">
+            <summary>
+            Result of posting a work-order status update to FSCM.
+            </summary>
+        </member>
+    </members>
+</doc>

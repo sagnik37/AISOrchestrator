@@ -1,0 +1,90 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "AZURE_FUNCTIONS_ENVIRONMENT": "Development",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=REDACTED;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=REDACTED",
+    "AccrualSchedule": "0 0 * * * *",
+    "KeyVault:VaultUri": "",
+
+    "Dataverse:Auth:TenantId": "bda43523-4404-4833-b00d-90e88aa1f2b3",
+    "Dataverse:Auth:ClientId": "f2922b3a-ae5f-4cba-ba85-71b437279da2",
+    "Dataverse:Auth:ClientSecret": "",
+    "FsaIngestion:DataverseApiBaseUrl": "https://operations-rpc-sit2.crm.dynamics.com/api/data/v9.2/",
+    "FsaIngestion:PageSize": "500",
+    "FsaIngestion:MaxPages": "20",
+    "FsaIngestion:PreferMaxPageSize": "5000",
+    "FsaIngestion:OrFilterChunkSize": "20",
+    "FsaIngestion:FetchStrategy": "FullFetch",
+    "FsaIngestion:WorkOrderFilter": "((msdyn_systemstatus eq 690970000 or msdyn_systemstatus eq 690970001 or msdyn_systemstatus eq 690970002))",
+    "Fs:SyncInternalDocumentsToFscm": "false",
+
+    "Endpoints:FscmBaseUrl": "https://rpc-sit2.sandbox.operations.dynamics.com/",
+    "Fscm:Auth:TenantId": "bda43523-4404-4833-b00d-90e88aa1f2b3",
+    "Fscm:Auth:ClientId": "c7ed9a22-a232-4b5f-b11a-cb4acc5939f5",
+    "Fscm:Auth:ClientSecret": "",
+    "Fscm:Auth:DefaultScope": "https://rpc-sit2.sandbox.operations.dynamics.com/.default",
+    "Fscm:JournalHistoryOrFilterChunkSize": "20",
+    "Fscm:ReleasedDistinctProductsOrFilterChunkSize": "20",
+    "Fscm:SubProjectPath": "/api/services/RPCSubProjectCreationWOIntServGrp/RPCSubProjectCreationWOIntServ/createSubProject",
+    "Fscm:JournalValidatePath": "/api/services/RPCJournalValidationWOIntServGrp/RPCJournalValidationWOIntServ/validate",
+    "Fscm:JournalCreatePath": "/api/services/RPCJournalOperationWOIntServGrp/RPCJournalOperationWOIntServ/runJournalAsyncOperation",
+    "Fscm:JournalPostPath": "/api/services/RPCJournalPostingWOIntServGrp/RPCJournalPostingWOIntServ/postJournal",
+    "Fscm:UpdateInvoiceAttributesPath": "/api/services/RPCInvoiceAttributesWOIntServGrp/RPCInvoiceAttributesWOIntServ/runAttributesAsyncOperation",
+    "Fscm:UpdateProjectStatusPath": "/api/services/RPCSubProjectStatusWOIntServGrp/RPCSubProjectStatusWOIntServ/updateStatus",
+    "Fscm:DocuAttachmentsPath": "/data/RPCCustomDocuAttachments",
+    "Fscm:Periods:FiscalCalendarIdOverride": "Fis Cal",
+
+    "Notifications:ErrorDistributionList": "schakbra35946@RPC.NET",
+    "Notifications:InvalidPayloadDistributionList": "schakbra35946@RPC.NET",
+
+    "AcsEmail:Enabled": "true",
+    "AcsEmail:ConnectionString": "",
+    "AcsEmail:FromAddress": "DoNotReply@7a764680-845f-4a41-81ff-c2a6ba519128.azurecomm.net",
+    "AcsEmail:FromDisplayName": "AIS Local",
+    "AcsEmail:WaitUntilCompleted": "false",
+
+    "Fscm:ReleasedDistinctProductsCache:Enabled": "true",
+    "Fscm:ReleasedDistinctProductsCache:Ttl": "1.00:00:00", // 1 day
+    "Fscm:ReleasedDistinctProductsCache:NegativeTtl": "01:00:00", // 1 hour
+    "Fscm:ReleasedDistinctProductsCache:MaxItemCountPerCall": "200000",
+
+
+    "AisLogging:LogPayloadBodies": "true",
+    "AisLogging:LogMultiWoPayloadBody": "true",
+    "AisLogging:IncludeDeltaReasonKey": "true",
+
+    "HttpPolicies:Dataverse:TimeoutSeconds": "60",
+    "HttpPolicies:Dataverse:Retries": "6",
+    "HttpPolicies:Dataverse:MaxBackoffSeconds": "30",
+    "HttpResilience:UseJitter": "true",
+    "HttpPolicies:Fscm:TimeoutSeconds": "120",
+    "HttpPolicies:Fscm:Retries": "5",
+    "HttpPolicies:Fscm:MaxBackoffSeconds": "30",
+
+    "Warmup:Enabled": "true",
+    "Warmup:MaxMinutes": "10",
+    "Warmup:DefaultMinutes": "1",
+    "Warmup:DefaultMaxConcurrency": "2",
+    "Warmup:DefaultDelayMs": "800",
+
+    "Warmup:DataversePaths:0": "msdyn_workorders?$select=msdyn_workorderid&$top=1",
+    "Warmup:DataversePaths:1": "msdyn_workorderproducts?$select=msdyn_workorderproductid&$top=1",
+    "Warmup:DataversePaths:2": "msdyn_workorderservices?$select=msdyn_workorderserviceid&$top=1",
+    "Warmup:DataversePaths:3": "products?$select=productid&$top=1",
+
+    "Warmup:FscmPaths:0": "data/ProjectItemJournalTrans?$select=ProjectId&$top=1",
+    "Warmup:FscmPaths:1": "data/JournalTrans?$select=JournalNum&$top=1",
+    "Warmup:FscmPaths:2": "data/ExpenseJournalLines?$select=ProjectUnitID&$top=1",
+    "Warmup:FscmPaths:3": "data/FiscalPeriods?$select=FiscalYear&$top=1",
+    "Warmup:FscmPaths:4": "data/LedgerFiscalPeriodsV2?$select=LedgerName&$top=1",
+    "Warmup:FscmPaths:5": "data/FiscalCalendarsEntity?$select=CalendarId&$top=1",
+    "Warmup:FscmPaths:6": "data/AttributeTypeGlobalAttributes?$select=Name&$top=1",
+    "Warmup:FscmPaths:7": "data/RPCLegalEntityIntegrationParametersBaseIntParams?$select=dataAreaId&$top=1",
+    "Warmup:FscmPaths:8": "data/CDSReleasedDistinctProducts?$select=ItemNumber&$top=1"
+
+
+
+  }
+}
